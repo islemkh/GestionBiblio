@@ -5,6 +5,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { useState} from "react"
+
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -32,8 +34,22 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3, 0, 2),
     },
   }));
-  
-export default function SignUp() {
+
+
+export default function SignUp(props) {
+
+const [firstName, setFirstName] = useState('')
+const [lastName,setLastName] = useState('')
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+
+ const submitFormSignUp = event => {
+  event.preventDefault();
+ const formData = { email, password }  
+  console.log('data: ', formData);  
+ }
+
+
 const classes = useStyles();
   return (
     <Container component="main" maxWidth="xs">
@@ -45,7 +61,7 @@ const classes = useStyles();
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={submitFormSignUp}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -56,6 +72,9 @@ const classes = useStyles();
                 fullWidth
                 id="firstName"
                 label="First Name"
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
+
                 autoFocus
               />
             </Grid>
@@ -68,6 +87,10 @@ const classes = useStyles();
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
+
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -79,6 +102,10 @@ const classes = useStyles();
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+
+
               />
             </Grid>
             <Grid item xs={12}>
@@ -91,6 +118,8 @@ const classes = useStyles();
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
               />
             </Grid>
           </Grid>

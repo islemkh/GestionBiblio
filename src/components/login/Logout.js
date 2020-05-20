@@ -9,7 +9,6 @@ return (
     you have been logged 
     <Link to="/" > login again </Link>
 </div>
-
 )
 
 }
