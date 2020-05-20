@@ -1,4 +1,4 @@
-const adherents = [
+const adherentsTab = [
 {
     id:"1",
     nom: "islem",
@@ -42,20 +42,26 @@ const adherents = [
 }]
 
 export  const addAdherents = function (nom, prenom,email,statut) {
-    adherents.push({nom: nom, prenom: prenom , email : email, statut:statut});
+    adherentsTab.push({nom: nom, prenom: prenom , email : email, statut:statut});
   console.log('adherent added successfully !!');
   console.log('-------------------------------------------------');
 }
  
 
+
 export const getAdherent = function (id) { 
-    for(var i = 0; i < adherents.length; i++) {
-      if (adherents[i].id === id) {
-        return Promise.resolve(adherents[i]);
+    for(var i = 0; i < adherentsTab.length; i++) {
+      if (adherentsTab[i].id === id) {
+        return Promise.resolve(adherentsTab[i]);
       }
     }
     return null;
   }
  // console.log(getAdherent("2"));
 
-
+ function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+ export const fetchAdherents = async () => {
+  return adherentsTab
+}

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useCallback, useEffect } from "react"
 import "./App.css"
 import Login from "./components/login/Login"
 import SignUp from "./components/login/SignUp"
@@ -7,14 +7,34 @@ import Bibliothécaire from "./components/login/Bibliothécaire"
 import Logout from "./components/login/Logout"
 import Menu from "./components/Menu/menu"
 
+
+import { fetchAdherents } from "./services/adherents.service"
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom"
-
+import ListeAdherents from "./components/listeAdherents/ListeAdherents"
+import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
 function App() {
-  return (
+  const [adherents, setAdherents] = useState([])
+
+
+useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetchAdherents()
+      
+      setAdherents(result)
+      
+      }
+      console.log('adherents21222')
+    fetchData()
+  },[])
+  
+  
+return (
+ 
+  
     <div className="app">
       <Router>
          <Switch>  
@@ -29,14 +49,16 @@ function App() {
           <Route exact path="/menu">
             <Menu />
           </Route>
-          <Route exact path="/Bibliothécaire">
-            <Bibliothécaire />
+          <Route  path="/biblio">
+            <BibliothécaireRoute />
           </Route>
           <Route  path="/logout">
             <Logout />
           </Route> 
           </Switch> 
           </Router>
+          
+          
       </div>
 )
 }
