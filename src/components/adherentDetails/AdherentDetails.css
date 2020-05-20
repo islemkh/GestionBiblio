@@ -1,0 +1,35 @@
+.adherent-details{
+    margin-left: 250px;
+width: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  height: 550px;
+}
+.adherent-details .header {
+    font-weight: bold;
+    font-size: 23px;
+   font-size: 40px;
+
+}
+img{
+    width: 120px; 
+    height: 120px; 
+    border: solid black 1px;
+    border-radius: 50px; 
+    margin-top: 10px;
+}
+.infos{
+    margin-top: 20px;
+    
+}
+.adherent-details .label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.adherent-details .value {
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 10px;
+}

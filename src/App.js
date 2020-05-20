@@ -3,7 +3,6 @@ import "./App.css"
 import Login from "./components/login/Login"
 import SignUp from "./components/login/SignUp"
 
-import Bibliothécaire from "./components/login/Bibliothécaire"
 import Logout from "./components/login/Logout"
 import Menu from "./components/Menu/menu"
 
@@ -17,19 +16,9 @@ import {
 import ListeAdherents from "./components/listeAdherents/ListeAdherents"
 import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
 function App() {
-  const [adherents, setAdherents] = useState([])
+ 
 
 
-useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetchAdherents()
-      
-      setAdherents(result)
-      
-      }
-      console.log('adherents21222')
-    fetchData()
-  },[])
   
   
 return (

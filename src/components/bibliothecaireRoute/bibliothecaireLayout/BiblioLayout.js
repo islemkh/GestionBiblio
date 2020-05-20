@@ -117,7 +117,7 @@ return (
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-           Bibliotheque
+           Espace Bibliothécaire
           </Typography>
           
         </Toolbar>
@@ -143,6 +143,7 @@ return (
       <div className="contenu">
       {children}
       </div>
+      <footer></footer>
     </div>
   );
 

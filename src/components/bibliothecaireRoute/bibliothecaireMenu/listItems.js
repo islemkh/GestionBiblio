@@ -8,25 +8,27 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import { NavLink, useRouteMatch } from "react-router-dom"
+
+
 
 
 export const mainListItems = (
 
   <div>
-    <ListItem button>
+    <ListItem button >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Accueil" />
     </ListItem>
     <ListItem button>
+      
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
       <ListItemText primary="emprunter " />
     </ListItem>
-    <NavLink to={"biblio/listeAdh"} >
+    
     <ListItem button >
       <ListItemIcon>
         <PeopleIcon />
@@ -35,7 +37,7 @@ export const mainListItems = (
       <ListItemText primary="Liste des adherents" />
       
     </ListItem>
-    </NavLink > 
+    
     <ListItem button>
       <ListItemIcon>
         <BarChartIcon />

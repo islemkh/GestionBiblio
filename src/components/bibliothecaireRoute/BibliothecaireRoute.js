@@ -1,6 +1,4 @@
 import React from "react"
-import ListeAdherents from '../listeAdherents/ListeAdherents'
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,7 +8,8 @@ import {
 } from "react-router-dom"
 import BiblioLayout from "./bibliothecaireLayout/BiblioLayout"
 import PageAdherents from '../pageAdherents/PageAdherents'
-
+import AdherentDetails from '../adherentDetails/AdherentDetails'
+import Bibliothécaire from '../login/Bibliothécaire'
 function BibliothecaireRoute() {
     let { path } = useRouteMatch()
   return (
@@ -19,16 +18,16 @@ function BibliothecaireRoute() {
       <BiblioLayout>
         <Switch>
           <Route exact path={`${path}/`}>
-          < PageAdherents/>
+          < Bibliothécaire/>
           </Route>
           
-          <Route exact path={`${path}/listeAdh`}>
+          <Route exact path={`${path}/adherents`}>
             < PageAdherents/>
           </Route>
 
-          {/* <Route exact path={`${path}/adherent/:adherentId`}>
+          <Route exact path={`${path}/adherents/:adherentId`}>
             <AdherentDetails />
-          </Route> */}
+          </Route>
 
         </Switch>
       </BiblioLayout>

@@ -1,3 +1,4 @@
+
 const adherentsTab = [
 {
     id:"1",
@@ -54,7 +55,7 @@ export  const addAdherents = function (nom, prenom,email,statut) {
  
 
 
-export const getAdherent = function (id) { 
+export const getAdherentById = function (id) { 
     for(var i = 0; i < adherentsTab.length; i++) {
       if (adherentsTab[i].id === id) {
         return Promise.resolve(adherentsTab[i]);
@@ -64,19 +65,16 @@ export const getAdherent = function (id) {
   }
  // console.log(getAdherent("2"));
 
-<<<<<<< HEAD
  function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
  export const fetchAdherents = async () => {
   return adherentsTab
 }
-=======
  export const fetchAdUsernamePass = (username , pass)  => {
   //return tasks
-  return adherents.find(ad => ad.email === username && ad.password === pass)
+  return adherentsTab.find(ad => ad.email === username && ad.password === pass)
  //stanniiii
  //jebt lo5ra 8lot 5ater lo5ra include 5ali nfassr oss include yaani hata ken 7arf shih chyraja3 7aja
 }
 
->>>>>>> bda5645524894539d70ffd82d3ee84fde9b71188

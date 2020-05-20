@@ -88,7 +88,7 @@ const submitForm = event => {
  
   const classes = useStyles();
   if (LoggedIn){
-    return <Redirect to="/Bibliothécaire"></Redirect> 
+    return <Redirect to="/biblio"></Redirect> 
   }
   if (adh){
     return (    
