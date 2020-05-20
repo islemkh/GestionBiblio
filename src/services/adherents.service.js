@@ -4,6 +4,7 @@ const adherents = [
     nom: "islem",
     prenom: "khemiri",
     email: "islem@gmail.com",
+    password:"123",
     statut : "banni"
 },
 
@@ -12,6 +13,7 @@ const adherents = [
     nom: "emna",
     prenom: "amri",
     email: "amri.emna@gmail.com" ,
+    password:"123",
     statut : "active"
 
 },
@@ -21,6 +23,7 @@ const adherents = [
     nom: "maryem",
     prenom: "souyah",
     email: "maryem@gmail.com",
+    password:"333",
     statut : "banni"
 
 },
@@ -30,6 +33,7 @@ const adherents = [
     nom: "sana",
     prenom: "kthiri",
     email: "sana.kthiri@gmail.com",
+    password:"123",
     statut : "active"
 
 },{
@@ -37,6 +41,7 @@ const adherents = [
     nom: "ahmed",
     prenom: "cherif",
     email: "ahmed@gmail.com",
+    password:"123",
     statut : "active"
 
 }]
@@ -58,4 +63,10 @@ export const getAdherent = function (id) {
   }
  // console.log(getAdherent("2"));
 
+ export const fetchAdUsernamePass = (username , pass)  => {
+  //return tasks
+  return adherents.find(ad => ad.email === username && ad.password === pass)
+ //stanniiii
+ //jebt lo5ra 8lot 5ater lo5ra include 5ali nfassr oss include yaani hata ken 7arf shih chyraja3 7aja
+}
 

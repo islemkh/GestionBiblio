@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -12,9 +10,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useState, useCallback, useEffect } from "react"
+import { useState } from "react"
 import {Redirect} from 'react-router-dom'
-
+import {fetchAdUsernamePass} from '../../services/adherents.service'
+import AlertMassage from "../alert/AlertMassage";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,15 +33,25 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
 }));
 
 
 
 export default function Login(props){
 const [email, setEmail] = useState('')
-
 const [password,setPassword] = useState('')
 const [LoggedIn, setLoggedIn] = useState(false)
+const [adh, setadh] = useState(false)
+const [conxErr ,setconxErr]=useState("")
+const [banniErr ,setbanniErr]=useState(false)
+
+
 
 
 const submitForm = event => {
@@ -53,6 +62,27 @@ const submitForm = event => {
     localStorage.setItem("token","test")
     setLoggedIn(true)
   }
+  else {
+    const resultat = fetchAdUsernamePass(email,password)
+    if(!resultat){
+      //mail et pass incorecte
+       setconxErr({ msg: "mot de passe et username incorrectes !!! please try again", key: Math.random() ,severity : "error"});
+
+    }else{
+      //email w pass d'adherent trouvée 
+      if(resultat["statut"]==="banni"){
+ //mais adh d'etat banni
+        setbanniErr({ msg: "ce adherent est d'etat banni :( ", key: Math.random() ,severity : "warning"});
+      }
+      //success 
+      else{
+       localStorage.setItem("token","test")
+       setadh(true)
+      }
+    }
+
+  }
+  
 
 }
  
@@ -60,7 +90,11 @@ const submitForm = event => {
   if (LoggedIn){
     return <Redirect to="/Bibliothécaire"></Redirect> 
   }
-  
+  if (adh){
+    return (    
+      <Redirect to="/home"></Redirect> )
+  }
+ 
   return (
       <>
       <Container component="main" maxWidth="xs">
@@ -100,10 +134,7 @@ const submitForm = event => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-      {/*     <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
+
           <Button
             type="submit"
             fullWidth
@@ -113,10 +144,13 @@ const submitForm = event => {
           >
             Sign In
           </Button>
+          {conxErr ? <AlertMassage key={conxErr.key} message={conxErr.msg} severity={conxErr.severity}/> : null}
+          {banniErr ? <AlertMassage key={banniErr.key} message={banniErr.msg} severity={banniErr.severity}/> : null}
+
           <Grid container>
             <Grid item>
               <Link to="/login">
-                {"Don't have an account? Sign Up"}
+                {"Don't have an account? Sign Up"}  
               </Link>
             </Grid>
           </Grid>
