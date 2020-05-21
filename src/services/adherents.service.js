@@ -2,8 +2,8 @@
 const adherentsTab = [
 {
     id:"1",
-    nom: "islem",
-    prenom: "khemiri",
+    nom: "Islem",
+    prenom: "Khemiri",
     email: "islem@gmail.com",
     password:"123",
     statut : "banni"
@@ -11,8 +11,8 @@ const adherentsTab = [
 
 {
     id:"2",
-    nom: "emna",
-    prenom: "amri",
+    nom: "Emna",
+    prenom: "Amri",
     email: "amri.emna@gmail.com" ,
     password:"123",
     statut : "active"
@@ -21,8 +21,8 @@ const adherentsTab = [
 
 {
     id:"3",
-    nom: "maryem",
-    prenom: "souyah",
+    nom: "Maryem",
+    prenom: "Souyah",
     email: "maryem@gmail.com",
     password:"333",
     statut : "banni"
@@ -31,16 +31,16 @@ const adherentsTab = [
 
 {
     id:"4",
-    nom: "sana",
-    prenom: "kthiri",
+    nom: "Sana",
+    prenom: "Kthiri",
     email: "sana.kthiri@gmail.com",
     password:"123",
     statut : "active"
 
 },{
     id:"5",
-    nom: "ahmed",
-    prenom: "cherif",
+    nom: "Ahmed",
+    prenom: "Cherif",
     email: "ahmed@gmail.com",
     password:"123",
     statut : "active"
