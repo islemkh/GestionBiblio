@@ -10,17 +10,16 @@ import BiblioLayout from "./bibliothecaireLayout/BiblioLayout"
 import PageAdherents from '../pageAdherents/PageAdherents'
 import AdherentDetails from '../adherentDetails/AdherentDetails'
 import Bibliothécaire from '../login/Bibliothécaire'
+
 function BibliothecaireRoute() {
     let { path } = useRouteMatch()
   return (
-    <div className="biblio-route">
-       
+    <div className="biblio-route">    
       <BiblioLayout>
         <Switch>
-          <Route exact path={`${path}/`}>
+         <Route exact path={`${path}/`}>
           < Bibliothécaire/>
           </Route>
-          
           <Route exact path={`${path}/adherents`}>
             < PageAdherents/>
           </Route>

@@ -9,14 +9,13 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-
+import {Link,Redirect} from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-
 import {mainListItems} from '../bibliothecaireMenu/listItems';
 import './BiblioLayout.css'
 //Style de la page 
-const drawerWidth = 240;
+const drawerWidth = 240; 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -100,8 +99,9 @@ if(token == null){
     loggedIn = false
 }
 if (loggedIn == false ){
-    // return <Redirect to="/"></Redirect> 
+    return <Redirect to="/"></Redirect> 
 }
+
 return (
 <div className={classes.root}>
       <CssBaseline />
@@ -119,6 +119,7 @@ return (
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
            Espace Bibliothécaire
           </Typography>
+   
           
         </Toolbar>
       </AppBar>

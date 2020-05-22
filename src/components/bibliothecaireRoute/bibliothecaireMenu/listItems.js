@@ -2,28 +2,30 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
-import {Link} from 'react-router-dom'
+import {Link , Redirect} from 'react-router-dom'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
+import HomeIcon from '@material-ui/icons/Home';
+
+//localStorage.removeItem("token")
 
 
 export const mainListItems = (
-
   <div>
-     <Link to="/biblio">
+     <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }}>
      <ListItem button >
       <ListItemIcon>
-        <DashboardIcon />
+        <HomeIcon />
       </ListItemIcon>
       <ListItemText primary="Accueil" />
     </ListItem>
      </Link>
-    
-    <Link to="/">
+    <Link to="/" style={{ color: '#666666', textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon />
@@ -33,7 +35,7 @@ export const mainListItems = (
     </Link>
     
      
-    <Link to="/biblio/adherents" replace>
+    <Link to="/biblio/adherents" style={{ color: '#666666', textDecoration: 'none' }} replace>
       <ListItem button >
       <ListItemIcon>
         <PeopleIcon />
@@ -42,23 +44,24 @@ export const mainListItems = (
     </ListItem>
     </Link>
     
-    <Link to="/biblio" replace>
+    <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }} replace>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon />
+        <ImportContactsIcon />
       </ListItemIcon>
       <ListItemText primary="Liste des livres" />
     </ListItem>
     </Link>
-    <ListItem button>
+    
+    <Link to="/" style={{ color: '#666666	', textDecoration: 'none' }}>
+     <ListItem button >
       <ListItemIcon>
-        <BarChartIcon />
+        <ExitToAppIcon />
       </ListItemIcon>
-      <ListItemText primary="Statistiques" />
+      <ListItemText primary="Déconnexion" />
     </ListItem>
+     </Link>
    
   </div>
+
 )
-
-  
-

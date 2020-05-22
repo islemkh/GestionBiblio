@@ -56,17 +56,18 @@ const [banniErr ,setbanniErr]=useState(false)
 
 const submitForm = event => {
   event.preventDefault();
-  console.log({ email, password });
+ // console.log({ email, password });
   //console.log(value);
   if(email === "admin@gmail.com" && password === "admin"){
     localStorage.setItem("token","test")
+    console.log('token: ',localStorage.setItem("token","test")    );
     setLoggedIn(true)
   }
   else {
     const resultat = fetchAdUsernamePass(email,password)
     if(!resultat){
       //mail et pass incorecte
-       setconxErr({ msg: "mot de passe et username incorrectes !!! please try again", key: Math.random() ,severity : "error"});
+       setconxErr({ msg: "email ou mot de passe incorrectes !!! Veuillez réessayer", key: Math.random() ,severity : "error"});
 
     }else{
       //email w pass d'adherent trouvée 

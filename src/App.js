@@ -2,8 +2,6 @@ import React, { useState, useCallback, useEffect } from "react"
 import "./App.css"
 import Login from "./components/login/Login"
 import SignUp from "./components/login/SignUp"
-
-import Logout from "./components/login/Logout"
 import Menu from "./components/Menu/menu"
 
 
@@ -17,9 +15,6 @@ import ListeAdherents from "./components/listeAdherents/ListeAdherents"
 import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
 function App() {
  
-
-
-  
   
 return (
  
@@ -40,10 +35,7 @@ return (
           </Route>
           <Route  path="/biblio">
             <BibliothécaireRoute />
-          </Route>
-          <Route  path="/logout">
-            <Logout />
-          </Route> 
+          </Route>    
           </Switch> 
           </Router>
           
