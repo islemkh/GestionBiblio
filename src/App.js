@@ -2,8 +2,6 @@ import React, { useState, useCallback, useEffect } from "react"
 import "./App.css"
 import Login from "./components/login/Login"
 import SignUp from "./components/login/SignUp"
-
-import Logout from "./components/login/Logout"
 import Menu from "./components/Menu/menu"
 
 
@@ -13,13 +11,11 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-import ListeAdherents from "./components/listeAdherents/ListeAdherents"
+//import ListeAdherents from "./components/listeAdherents/ListeAdherents"
 import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
+import AdherentRoute from "./components/adherent/adherentRoute/AdherentRoute"
 function App() {
  
-
-
-  
   
 return (
  
@@ -34,16 +30,15 @@ return (
           <Route exact path="/login">
             <SignUp/>
           </Route> 
-
-          <Route exact path="/menu">
-            <Menu />
-          </Route>
+          
           <Route  path="/biblio">
             <BibliothécaireRoute />
-          </Route>
-          <Route  path="/logout">
-            <Logout />
+          </Route>    
+
+          <Route  path="/adherent">
+            <AdherentRoute />
           </Route> 
+
           </Switch> 
           </Router>
           

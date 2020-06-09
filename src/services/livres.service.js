@@ -92,3 +92,6 @@ export const fetchLivres = async searchValue => {
   return livres.filter(livre => livre.titre.includes(searchValue))
 } 
 
+export const fetchLivre = async () => {
+  return livres
+}

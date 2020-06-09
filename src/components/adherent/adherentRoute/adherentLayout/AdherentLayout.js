@@ -12,8 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {Link,Redirect} from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import {mainListItems} from '../bibliothecaireMenu/listItems';
-import './BiblioLayout.css'
+import {AdherentMenu} from '../adherentMenu/AdherentMenu';
 //Style de la page 
 const drawerWidth = 240; 
 
@@ -81,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 //code jsX
-export default function BiblioLayout({children}){
+export default function AdherentLayout({children}){
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -117,7 +116,7 @@ return (
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-           Espace Bibliothécaire
+           Espace Adherent
           </Typography>
    
           
@@ -136,7 +135,7 @@ return (
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>{AdherentMenu}</List>
         
         <Divider />
         
@@ -144,7 +143,7 @@ return (
       <div className="contenu">
       {children}
       </div>
-      
+      <footer></footer>
     </div>
   );
 

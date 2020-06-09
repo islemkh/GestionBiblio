@@ -1,7 +1,7 @@
 import React from "react"
 import './Adherent.css'
 import profilepic from '../../assets/im1.png'
-import { useRouteMatch,useHistory}from 'react-router-dom'
+import { useRouteMatch,useHistory} from 'react-router-dom'
 function Adherent(
    { id,
     nom,
@@ -15,10 +15,8 @@ const history = useHistory()
         history.push(`${path}/${id}`);
     }
     return (
-
         <div className='adherent'>
         <div>
-        
         
         <img className='profilepic' src={profilepic} alt="profile"/> 
           <div className="title">
@@ -28,7 +26,7 @@ const history = useHistory()
         
       </div>
       <div className="action">
-        
+            
            <button >banir</button>
           <button onClick={handleClickDetails}>details</button>
         

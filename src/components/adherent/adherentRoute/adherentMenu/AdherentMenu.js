@@ -15,9 +15,9 @@ import HomeIcon from '@material-ui/icons/Home';
 //localStorage.removeItem("token")
 
 
-export const mainListItems = (
+export const AdherentMenu = (
   <div>
-     <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }}>
+     <Link to="/adherent" style={{ color: '#666666', textDecoration: 'none' }} replace>
      <ListItem button >
       <ListItemIcon>
         <HomeIcon />
@@ -25,7 +25,7 @@ export const mainListItems = (
       <ListItemText primary="Accueil" />
     </ListItem>
      </Link>
-    <Link to="/" style={{ color: '#666666', textDecoration: 'none' }}>
+    <Link to="/" style={{ color: '#666666', textDecoration: 'none' }}  replace>
     <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon />
@@ -35,7 +35,7 @@ export const mainListItems = (
     </Link>
     
      
-    <Link to="/biblio/adherents" style={{ color: '#666666', textDecoration: 'none' }} replace>
+    <Link to="/adherent/" style={{ color: '#666666', textDecoration: 'none' }} replace>
       <ListItem button >
       <ListItemIcon>
         <PeopleIcon />
@@ -44,7 +44,7 @@ export const mainListItems = (
     </ListItem>
     </Link>
     
-    <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }} replace>
+    <Link to="/adherent/livre" style={{ color: '#666666', textDecoration: 'none' }} replace>
     <ListItem button>
       <ListItemIcon>
         <ImportContactsIcon />
