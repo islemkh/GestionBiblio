@@ -143,7 +143,7 @@ return (
       <div className="contenu">
       {children}
       </div>
-      <footer></footer>
+      
     </div>
   );
 

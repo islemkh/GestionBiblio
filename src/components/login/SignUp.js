@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useState} from "react"
+import ListeDemande from '../listeDemandeAdherents/ListeDemande'
 
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
@@ -143,6 +144,8 @@ const classes = useStyles();
       </div>
       <Box mt={5}>
       </Box>
+      <ListeDemande firstN={firstName} lastN={lastName} email={email}/>
     </Container>
+    
   );
 }

@@ -11,7 +11,7 @@ function Adherent(
 
 const history = useHistory()
      let { path } = useRouteMatch()
-     const handleClick = () => {
+     const handleClickDetails = () => {
         history.push(`${path}/${id}`);
     }
     return (
@@ -30,7 +30,7 @@ const history = useHistory()
       <div className="action">
         
            <button >banir</button>
-          <button onClick={handleClick}>details</button>
+          <button onClick={handleClickDetails}>details</button>
         
       </div>
       </div>
