@@ -11,8 +11,9 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-import ListeAdherents from "./components/listeAdherents/ListeAdherents"
+//import ListeAdherents from "./components/listeAdherents/ListeAdherents"
 import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
+import AdherentRoute from "./components/adherent/adherentRoute/AdherentRoute"
 function App() {
  
   
@@ -29,13 +30,15 @@ return (
           <Route exact path="/login">
             <SignUp/>
           </Route> 
-
-          <Route exact path="/menu">
-            <Menu />
-          </Route>
+          
           <Route  path="/biblio">
             <BibliothécaireRoute />
           </Route>    
+
+          <Route  path="/adherent">
+            <AdherentRoute />
+          </Route> 
+
           </Switch> 
           </Router>
           

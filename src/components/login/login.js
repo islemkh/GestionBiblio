@@ -93,7 +93,7 @@ const submitForm = event => {
   }
   if (adh){
     return (    
-      <Redirect to="/home"></Redirect> )
+      <Redirect to="/adherent"></Redirect> )
   }
  
   return (

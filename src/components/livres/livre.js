@@ -1,69 +1,43 @@
-import React, { Component } from 'react'
-import MaterialTable from 'material-table';
+import React from 'react'
+//import MaterialTable from 'material-table';
 import { useRouteMatch,useHistory} from 'react-router-dom'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
+export default function Livre({ id,titre,auteur,edition}){
+  console.log(auteur,'tty')
 
+const history = useHistory()
+     let { path } = useRouteMatch()
+     const handleClick = () => {
+        history.push(`${path}/${id}`);
+    }
+    return (
+      <Paper>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Id </TableCell>
+            <TableCell>titre</TableCell>
+            <TableCell>auteur</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
 
-
-function Adherent(
-        { id,
-        titre,
-         auteur}
-     ){
-        const history = useHistory()
-        let { path } = useRouteMatch()
-        const handleClick = () => {
-           history.push(`${path}/${id}`);
-       }
-    
-        return (
-            <div>
-    <MaterialTable
-      title="liste des livres"
-      columns={[
-          { title: 'titre', field: 'titre' },
-          { title: 'auteur', field: 'auteur' },
-          { title: 'edition', field: 'edition', type: 'numeric' },
-          { title: 'NbExemplaires', field: 'NbExemplaires', type: 'numeric' },
-        ]}
-     /*  //data={}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              //setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }} */
-    />
- </div>
-        )}
+            <TableRow>
+              <TableCell component="tr" scope="row"> {id}
+              </TableCell>
+              <TableCell component="tr" scope="row">{titre}</TableCell>
+              <TableCell component="tr" scope="row">{auteur}</TableCell>
+              <TableCell component="tr" scope="row">{edition}</TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+    </Paper>
+        
+        )} 
+  
