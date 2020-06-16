@@ -1,11 +1,8 @@
-import React, { useState, useCallback, useEffect } from "react"
+import React from "react"
 import "./App.css"
 import Login from "./components/login/Login"
 import SignUp from "./components/login/SignUp"
-import Menu from "./components/Menu/menu"
-
-
-import { fetchAdherents } from "./services/adherents.service"
+import Accueil from './components/accueil/Accueil'
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,10 +21,12 @@ return (
       <Router>
          <Switch>  
         <Route exact path="/">
-            <Login/>
+            <Accueil/>
           </Route> 
-          
           <Route exact path="/login">
+            <Login/>
+          </Route>
+          <Route exact path="/signup">
             <SignUp/>
           </Route> 
           

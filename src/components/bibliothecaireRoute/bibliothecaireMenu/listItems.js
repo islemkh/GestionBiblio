@@ -2,12 +2,9 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import {Link , Redirect} from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import HomeIcon from '@material-ui/icons/Home';
@@ -44,6 +41,15 @@ export const mainListItems = (
     </ListItem>
     </Link>
     
+    <Link to="/biblio/demandes" style={{ color: '#666666', textDecoration: 'none' }} replace>
+      <ListItem button >
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Liste des demandes" /> 
+    </ListItem>
+    </Link>
+
     <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }} replace>
     <ListItem button>
       <ListItemIcon>
@@ -53,7 +59,7 @@ export const mainListItems = (
     </ListItem>
     </Link>
     
-    <Link to="/" style={{ color: '#666666	', textDecoration: 'none' }}>
+    <Link to="/login" style={{ color: '#666666	', textDecoration: 'none' }}>
      <ListItem button >
       <ListItemIcon>
         <ExitToAppIcon />

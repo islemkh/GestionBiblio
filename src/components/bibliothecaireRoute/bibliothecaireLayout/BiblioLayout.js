@@ -9,7 +9,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import {Link,Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import {mainListItems} from '../bibliothecaireMenu/listItems';
@@ -98,7 +98,7 @@ let loggedIn = true
 if(token == null){
     loggedIn = false
 }
-if (loggedIn == false ){
+if (loggedIn === false ){
     return <Redirect to="/"></Redirect> 
 }
 

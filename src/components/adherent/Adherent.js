@@ -2,13 +2,20 @@ import React from "react"
 import './Adherent.css'
 import profilepic from '../../assets/im1.png'
 import { useRouteMatch,useHistory} from 'react-router-dom'
+import {bannir} from '../../services/adherents.service'
 function Adherent(
    { id,
     nom,
-    prenom}
+    prenom,
+    statut}
 )
-{console.log(prenom,'tty')
-
+{
+    const handleClickBannir = () => {
+        bannir(
+        id
+      )
+         
+    }
 const history = useHistory()
      let { path } = useRouteMatch()
      const handleClickDetails = () => {
@@ -27,9 +34,12 @@ const history = useHistory()
       </div>
       <div className="action">
             
-           <button >banir</button>
+            
           <button onClick={handleClickDetails}>details</button>
-        
+          {statut==="active"?(
+          <button onClick={handleClickBannir} >bannir</button>):
+          (<button >débannir</button>)
+            }
       </div>
       </div>
     )

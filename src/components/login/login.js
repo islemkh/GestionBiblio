@@ -15,6 +15,7 @@ import {Redirect} from 'react-router-dom'
 import {fetchAdUsernamePass} from '../../services/adherents.service'
 import AlertMassage from "../alert/AlertMassage";
 
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -54,6 +55,11 @@ const [banniErr ,setbanniErr]=useState(false)
 
 
 
+  
+  var tabAdherents = localStorage.getItem("adherentsTab");
+  var listAdherents = JSON.parse(tabAdherents);
+
+
 const submitForm = event => {
   event.preventDefault();
  // console.log({ email, password });
@@ -64,7 +70,7 @@ const submitForm = event => {
     setLoggedIn(true)
   }
   else {
-    const resultat = fetchAdUsernamePass(email,password)
+    const resultat = fetchAdUsernamePass(listAdherents,email,password)
     if(!resultat){
       //mail et pass incorecte
        setconxErr({ msg: "email ou mot de passe incorrectes !!! Veuillez réessayer", key: Math.random() ,severity : "error"});

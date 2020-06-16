@@ -1,38 +1,35 @@
 import React from "react"
-import profilepic from '../../assets/im1.png'
-function ListeDemande(
-   { id,
-    firstN,
-    lastN,
-    email}
-)
+import Demande from "../demandeAdherent/Demande"
+import './ListeDemande.css'
+function ListeDemande()
 {
+  
+  var retrievedData = localStorage.getItem("demandes");
+  var tabDemandes = JSON.parse(retrievedData);
+  
 
-// const history = useHistory()
-//      let { path } = useRouteMatch()
-//      const handleClickDetails = () => {
-//         history.push(`${path}/${id}`);
-//     }
+  console.log(tabDemandes.length)
     return (
 
-        <div className='adherent'>
-        <div>
-        
-        
-        <img className='profilepic' src={profilepic} alt="profile"/> 
-          <div className="title">
-           <p>{firstN} {lastN}</p> 
-            <p>{email}</p>
-
-          </div>
-        
+        <div className='listeDemande'>
+          <h1>Listes des demandes d'adhesion</h1>
+          {tabDemandes.length!==0 ?(
+          <div className="liste_demande_style">
+         
+        {tabDemandes.map((demande, index)=> (
+          <Demande
+            key={index}
+              firstName={demande.firstName}
+              lastName={demande.lastName}
+             myemail={demande.email}
+             mdp={demande.password}
+             tabDemandes={tabDemandes}
+             
+            />
+        ))}  
       </div>
-      <div className="action">
-        
-           <button >refuser</button>
-          <button>accepter</button>
-        
-      </div>
+          ):( <div> Aucune demande d'adhésion</div>
+          )}
       </div>
     )
 }

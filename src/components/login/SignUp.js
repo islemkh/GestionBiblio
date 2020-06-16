@@ -3,11 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import { useState} from "react"
-import ListeDemande from '../listeDemandeAdherents/ListeDemande'
-
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -46,10 +42,23 @@ const [password, setPassword] = useState('')
 
  const submitFormSignUp = event => {
   event.preventDefault();
- const formData = { email, password }  
-  console.log('data: ', formData);  
+   
  }
-
+// nsajlou f localStorage
+ var existingEntries = JSON.parse(localStorage.getItem("demandes"));
+    if(existingEntries === null) existingEntries = [];
+    var entry = {
+        "id":existingEntries.length,
+        "firstName": firstName,
+        "lastName": lastName,
+        "email":email,
+        "password" : password
+    };
+    
+    const addDemande = () => { 
+  existingEntries.push(entry);
+  localStorage.setItem("demandes", JSON.stringify(existingEntries));
+}
 
 const classes = useStyles();
   return (
@@ -130,6 +139,7 @@ const classes = useStyles();
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={addDemande}
           >              
           Sign Up
           </Button>
@@ -144,7 +154,7 @@ const classes = useStyles();
       </div>
       <Box mt={5}>
       </Box>
-      <ListeDemande firstN={firstName} lastN={lastName} email={email}/>
+     
     </Container>
     
   );

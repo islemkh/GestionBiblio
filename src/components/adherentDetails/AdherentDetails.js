@@ -5,16 +5,21 @@ import './AdherentDetails.css'
 import img1 from '../../assets/im1.png'
 
 function AdherentDetails() {
+
   const [loading, setLoading] = useState(false)
-  const [adherent, setAdherent] = useState({})
+  var tabAdherents = localStorage.getItem("adherentsTab");
+  var listAdherents =JSON.parse(tabAdherents);
+  const [adherent, setAdherent] = useState(listAdherents)
+  
   const { adherentId } = useParams()
-
+  
+  console.log(adherent)
   useEffect(() => {
+    
     const fetchData = async () => {
+      
       setLoading(true)
-      const result = await getAdherentById(adherentId)
-      console.log(result)
-
+      const result = await getAdherentById(adherent,adherentId)
       setAdherent(result)
       setLoading(false)
     }
@@ -23,7 +28,7 @@ function AdherentDetails() {
 
   return (
     <div className="adherent-details">
-      <div className="header">Adherent details</div>  
+      <div className="headerAd">Adherent details</div>  
       {loading ? (
         <div>Loading ... </div>
       ) : (
