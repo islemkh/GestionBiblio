@@ -9,9 +9,11 @@ import ListeAdherents from '../listeAdherents/ListeAdherents'
 import AdherentDetails from '../adherentDetails/AdherentDetails'
 import Bibliothécaire from '../login/Bibliothécaire'
 import ListeDemande from "../listeDemandeAdherents/ListeDemande"
+import BannirAdherent from "../banni-debanni/BannirAdherent"
 
 function BibliothecaireRoute() {
     let { path } = useRouteMatch()
+
   return (
     <div className="biblio-route">    
       <BiblioLayout>
@@ -30,6 +32,9 @@ function BibliothecaireRoute() {
             <AdherentDetails />
           </Route>
 
+          <Route exact path={`${path}/adherents/bannir/:bannirId`}>
+            <BannirAdherent />
+          </Route>
         </Switch>
       </BiblioLayout>
 

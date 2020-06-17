@@ -13,7 +13,6 @@ function AdherentDetails() {
   
   const { adherentId } = useParams()
   
-  console.log(adherent)
   useEffect(() => {
     
     const fetchData = async () => {

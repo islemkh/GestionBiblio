@@ -16,6 +16,7 @@ function ListeAdherents(){
               nom={adherentT.nom}
               prenom={adherentT.prenom}
              statut={adherentT.statut}
+             adheretsTab={listaAdherents}
             />
         ))}
       </div>

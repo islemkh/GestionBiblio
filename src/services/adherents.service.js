@@ -48,21 +48,36 @@ const adherentsTab = [
 }]
 
 export  const addAdherents = function (tab,nom, prenom,email,password,statut) {
-    tab.push({id:(tab.length+1),nom: nom, prenom: prenom , email : email, password:password, statut:statut});
+    tab.push({id:(tab.length+1).toString(),nom: nom, prenom: prenom , email : email, password:password, statut:statut});
   console.log('adherent added successfully !!');
   console.log('-------------------------------------------------');
 }
  
-export  const bannir = function (tab,id) {
+export  const bannir = function (tab,idB) {
   for(var i = 0; i < tab.length; i++) {
-    if (tab[i].id === id) {
-      return tab[i].statut==="banni";
-      
+    if (tab[i].id === idB) {
+      if(tab[i].statut==="active"){
+        tab[i].statut="banni";  
+      return (tab[i]);
+      }
+      else{
+       tab[i].statut="active";  
+      return (tab[i]);
+      }
     }
-}
-return (tab[i]);
+  }
+    return null;
 }
 
+export  const updateTab = function (tab1,tab2) {
+  for(var i = 0; i < tab1.length; i++) {
+    if (tab1[i].nom === tab2.nom) {
+       tab1[i]=tab2;  
+      return (tab1);
+      }
+    }
+    return null;
+}
 export const getAdherentById = function (tab,id) { 
     for(var i = 0; i < tab.length; i++) {
       if (tab[i].id === id) {

@@ -47,8 +47,9 @@ const [password, setPassword] = useState('')
 // nsajlou f localStorage
  var existingEntries = JSON.parse(localStorage.getItem("demandes"));
     if(existingEntries === null) existingEntries = [];
+    const id=(existingEntries.length).toString();
     var entry = {
-        "id":existingEntries.length,
+        "id":id,
         "firstName": firstName,
         "lastName": lastName,
         "email":email,
