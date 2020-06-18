@@ -50,7 +50,7 @@ export const mainListItems = (
     </ListItem>
     </Link>
 
-    <Link to="/biblio" style={{ color: '#666666', textDecoration: 'none' }} replace>
+    <Link to="/biblio/livre" style={{ color: '#666666', textDecoration: 'none' }} replace>
     <ListItem button>
       <ListItemIcon>
         <ImportContactsIcon />

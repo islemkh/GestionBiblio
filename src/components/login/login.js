@@ -52,10 +52,6 @@ const [adh, setadh] = useState(false)
 const [conxErr ,setconxErr]=useState("")
 const [banniErr ,setbanniErr]=useState(false)
 
-
-
-
-  
   var tabAdherents = localStorage.getItem("adherentsTab");
   var listAdherents = JSON.parse(tabAdherents);
 
@@ -77,7 +73,7 @@ const submitForm = event => {
     }else{
       //email w pass d'adherent trouvée 
       if(resultat["statut"]==="banni"){
- //mais adh d'etat banni
+     //mais adh d'etat banni
         setbanniErr({ msg: "ce adherent est d'etat banni :( ", key: Math.random() ,severity : "warning"});
       }
       //success 
@@ -155,7 +151,7 @@ const submitForm = event => {
 
           <Grid container>
             <Grid item>
-              <Link to="/login">
+              <Link to="/signup">
                 {"Don't have an account? Sign Up"}  
               </Link>
             </Grid>
@@ -165,9 +161,7 @@ const submitForm = event => {
       <Box mt={8}>
       </Box>
     </Container>
-    </>
-     
-      
+    </> 
       )
     
       }

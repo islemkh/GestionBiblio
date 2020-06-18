@@ -10,6 +10,7 @@ import AdherentDetails from '../adherentDetails/AdherentDetails'
 import Bibliothécaire from '../login/Bibliothécaire'
 import ListeDemande from "../listeDemandeAdherents/ListeDemande"
 import BannirAdherent from "../banni-debanni/BannirAdherent"
+import PageLivre from '../livres/PageLivre'
 
 function BibliothecaireRoute() {
     let { path } = useRouteMatch()
@@ -28,6 +29,11 @@ function BibliothecaireRoute() {
           <Route exact path={`${path}/demandes`}>
             < ListeDemande/>
           </Route>
+
+          <Route exact path={`${path}/livre`}>
+            <PageLivre/>
+          </Route> 
+
           <Route exact path={`${path}/adherents/:adherentId`}>
             <AdherentDetails />
           </Route>

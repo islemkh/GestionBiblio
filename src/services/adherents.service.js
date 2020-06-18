@@ -6,9 +6,8 @@ const adherentsTab = [
     prenom: "Khemiri",
     email: "islem@gmail.com",
     password:"123",
-    statut : "banni"
+    statut : "active"
 },
-
 {
     id:"2",
     nom: "Emna",
@@ -39,11 +38,11 @@ const adherentsTab = [
 
 },{
     id:"5",
-    nom: "Ahmed",
-    prenom: "Cherif",
-    email: "ahmed@gmail.com",
+    nom: "ines",
+    prenom: "ben mheni",
+    email: "ines@gmail.com",
     password:"123",
-    statut : "active"
+    statut : "banni"
 
 }]
 

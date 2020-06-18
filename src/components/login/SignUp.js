@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import AlertMassage from "../alert/AlertMassage";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -39,6 +40,7 @@ const [firstName, setFirstName] = useState('')
 const [lastName,setLastName] = useState('')
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [alert ,setAlert]=useState("")
 
  const submitFormSignUp = event => {
   event.preventDefault();
@@ -59,6 +61,7 @@ const [password, setPassword] = useState('')
     const addDemande = () => { 
   existingEntries.push(entry);
   localStorage.setItem("demandes", JSON.stringify(existingEntries));
+  setAlert({ msg: "Your inscription have been saved successfully, u have to wait for the admin to accept ur demand so you can login", key: Math.random() ,severity : "success"});
 }
 
 const classes = useStyles();
@@ -85,7 +88,6 @@ const classes = useStyles();
                 label="First Name"
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
-
                 autoFocus
               />
             </Grid>
@@ -100,8 +102,6 @@ const classes = useStyles();
                 autoComplete="lname"
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
-
-
               />
             </Grid>
             <Grid item xs={12}>
@@ -144,9 +144,11 @@ const classes = useStyles();
           >              
           Sign Up
           </Button>
+          {alert ? <AlertMassage key={alert.key} message={alert.msg} severity={alert.severity}/> : null}
+
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to="/" >
+              <Link to="/login" >
                 Already have an account? Sign in
               </Link>
             </Grid>

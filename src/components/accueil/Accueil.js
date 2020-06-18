@@ -17,20 +17,19 @@ useEffect(() => {
     localStorage.setItem("adherentsTab", JSON.stringify(adherents));
   },[adherents])
   return (
-    <div className="accueilStyle">
+<div className="accueilStyle">
       <div className="header">
       <Slideshow/>
       </div>
-      <Link to="/login">
-     <button type="button">
-          Login
-     </button>
+      <br></br>
+<div className="bt"> 
+  <Link to="/login">
+    <button type="button">Login</button>
  </Link>
  <Link to="/signup">
-     <button type="button">
-          Register
-     </button>
+     <button type="button">Register</button>
  </Link>
+   </div>
    </div>
   );
 }

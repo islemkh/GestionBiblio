@@ -6,7 +6,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { fetchLivre } from '../../services/livres.service'
-
+import './Livre.css'
 
 function PageAdherents() {
     const [Livres, setLivres] = useState([])
@@ -21,34 +21,34 @@ function PageAdherents() {
         fetchData()
       },[])
   
-  
+    const test = localStorage.getItem("user")
+    let button;
+    if (test === "bibliothecaire") {
+      button = <div><button>Ajouter</button> <button>Archiver</button><button>Details</button></div>;
+    } else {
+      button = <div><button className="emp">Emprunter</button> <button>Details</button></div>;
+    }
+
 return (
     <div className="pageAdherents">
 {/*     <ListeLivres livres={Livres}/>
  */}          
-    <h1>listes des livres </h1>
-
+    <h1>Listes des livres </h1>
 <Paper>
       <Table >
         <TableHead>
           <TableRow>
-            <TableCell>id</TableCell>
-            <TableCell >titre</TableCell>
-            <TableCell>auteur</TableCell>
-            <TableCell >edtion </TableCell>
+            <TableCell ><b>Titre</b></TableCell>
+            <TableCell ><b>Auteur</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {Livres.map(n => {    
-            
             return (
               <TableRow key={n.id}>
-                <TableCell component="th" scope="row" numeric> 
-                  {n.id}
-                </TableCell>
                 <TableCell >{n.titre}</TableCell>
                 <TableCell numeric>{n.auteur}</TableCell>
-                <TableCell numeric>{n.edition}</TableCell>
+                <TableCell> {button} </TableCell>
               </TableRow>
             );
           })}
