@@ -65,8 +65,7 @@ const submitForm = event => {
  // console.log({ email, password });
   //console.log(value);
   if(email === "admin@gmail.com" && password === "admin"){
-    localStorage.setItem("token","test")
-    console.log('token: ',localStorage.setItem("token","test")    );
+    localStorage.setItem("user","bibliothecaire")
     setLoggedIn(true)
   }
   else {
@@ -83,7 +82,7 @@ const submitForm = event => {
       }
       //success 
       else{
-       localStorage.setItem("token","test")
+       localStorage.setItem("user","adherent")
        setadh(true)
       }
     }
