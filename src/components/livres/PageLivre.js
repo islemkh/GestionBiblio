@@ -8,9 +8,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './Livre.css'
 import ModalBook from '../modalBook/ModalBook'
-import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 
-function PageAdherents() {    
+function PageAdherents() {
+    
+
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres);
     const history = useHistory()
@@ -28,15 +29,9 @@ function PageAdherents() {
 
 
 return (
-    <div className="pageAdherents">       
+    <div className="pageAdherents">
+         
     <h1>Listes des livres </h1>
-    <MDBCol md="5" className="search">
-      <MDBFormInline className="md-form">
-        <MDBIcon icon="search" />
-        <input className="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" />
-      </MDBFormInline>
-    </MDBCol>
-
 <Paper>
       <Table >
         <TableHead>
