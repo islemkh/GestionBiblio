@@ -8,7 +8,7 @@ import {
   Switch,
   Route
 } from "react-router-dom"
-//import ListeAdherents from "./components/listeAdherents/ListeAdherents"
+
 import BibliothécaireRoute from './components/bibliothecaireRoute/BibliothecaireRoute'
 import AdherentRoute from "./components/adherent/adherentRoute/AdherentRoute"
 function App() {

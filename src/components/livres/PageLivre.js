@@ -1,38 +1,36 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+import {useRouteMatch, useHistory} from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { fetchLivre } from '../../services/livres.service'
 import './Livre.css'
+import ModalBook from '../modalBook/ModalBook'
 
 function PageAdherents() {
-    const [Livres, setLivres] = useState([])
+    
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-          const result = await fetchLivre()
-          setLivres(result)
-          console.log('result: ', result);
-          }
-        fetchData()
-      },[])
+    var tabLivres = localStorage.getItem("livresTab");
+    var listLivres = JSON.parse(tabLivres);
+    const history = useHistory()
+    let { path } = useRouteMatch()
+   const [show,setShow]=useState(false)
   
+  const showModal = () => {
+    setShow(true);
+  };
+
+  const hideModal = () => {
+    setShow(false);
+  };
     const test = localStorage.getItem("user")
-    let button;
-    if (test === "bibliothecaire") {
-      button = <div><button>Ajouter</button> <button>Archiver</button><button>Details</button></div>;
-    } else {
-      button = <div><button className="emp">Emprunter</button> <button>Details</button></div>;
-    }
+
 
 return (
     <div className="pageAdherents">
-{/*     <ListeLivres livres={Livres}/>
- */}          
+         
     <h1>Listes des livres </h1>
 <Paper>
       <Table >
@@ -43,18 +41,28 @@ return (
           </TableRow>
         </TableHead>
         <TableBody>
-          {Livres.map(n => {    
+          {listLivres.map(n => {    
             return (
               <TableRow key={n.id}>
                 <TableCell >{n.titre}</TableCell>
                 <TableCell numeric>{n.auteur}</TableCell>
-                <TableCell> {button} </TableCell>
+                {test === "bibliothecaire"?(
+                <TableCell> <div><button onClick={showModal}>Ajouter</button> <button>Archiver</button>
+                <button onClick =  {() =>history.push(`${path}/${n.id}`)} >Details</button></div></TableCell>
+                ):(
+                  <TableCell><div><button className="emp">Emprunter</button> 
+                  <button onClick ={()=>history.push(`${path}/${n.id}`)} >Details</button></div></TableCell>
+                )}
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
     </Paper>
+    <ModalBook show={show} handleClose={hideModal}>
+          <p>Modal</p>
+          <p>Data</p>
+        </ModalBook>
     </div>
 )
 }

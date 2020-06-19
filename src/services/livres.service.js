@@ -50,15 +50,15 @@ const livres = [
 
       }
     ]
-  export const getLivres = function (id) {
-        for(var i = 0; i < livres.length; i++) {
-        if ( livres[i].id === id) {
-          return Promise.resolve(livres[i]);
+  export const getLivresById = function (tab,id) {
+        for(var i = 0; i < tab.length; i++) {
+        if ( tab[i].id === id) {
+          return (tab[i]);
         }
       }
       return null;
     }
-console.log(getLivres("1"))  
+
 
   export   const setTitre = function (id,titre) {
       for (let i = 0; i < livres.length; i++) {
@@ -69,8 +69,9 @@ console.log(getLivres("1"))
       console.log('titre: ', titre)
     }
    
-export  const addLivre = function (titre, auteur,edition,NbExemplaires) {
-  livres.push({titre: titre, auteur: auteur ,edition: edition , NbExemplaires : NbExemplaires});
+export  const addLivre = function (tab,titre, auteur,edition,NbExemplaires) {
+  
+  tab.push({id: (tab.length+1).toString() ,titre: titre, auteur: auteur ,edition: edition , NbExemplaires : NbExemplaires});
   console.log('livre added successfully !!');
   console.log('-------------------------------------------------');
 } 

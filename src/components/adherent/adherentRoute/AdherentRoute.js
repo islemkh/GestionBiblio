@@ -6,7 +6,7 @@ import {
 } from "react-router-dom"
 import AdherentLayout from "./adherentLayout/AdherentLayout"
 import PageLivre from '../../livres/PageLivre'
-//import AdherentDetails from '../adherentDetails/AdherentDetails'
+import LivreDetails from '../../livreDetails/LivreDetails'
 import Home from '../../home/Home'
 
 function AdherentRoute() {
@@ -21,10 +21,10 @@ function AdherentRoute() {
            <Route exact path={`${path}/livre`}>
             <PageLivre/>
           </Route> 
+          <Route exact path={`${path}/livre/:livreId`}>
+            <LivreDetails />
+          </Route>
 
-          {/* <Route exact path={`${path}/adherents/:adherentId`}>
-            <AdherentDetails />
-          </Route> */}
         </Switch>
       </AdherentLayout>
 
