@@ -5,8 +5,16 @@ width: 900px;
   text-align: center;
   height: auto;
 }
+.add{
+  width: auto;
+float: right;
+
+}
 .emp{
   width:auto;
+}
+.btn{
+  visibility: hidden;
 }
 .input-group.md-form.form-sm.form-1 input {
   border: 1px solid #bdbdbd;
@@ -16,6 +24,7 @@ width: 900px;
 }
 .search{
   margin-left: 60%;
+
 }
 .h1{
   margin-top: 3%;
