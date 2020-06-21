@@ -9,13 +9,24 @@ import Paper from '@material-ui/core/Paper';
 import Livre from './Livre'
 import ModalBook from '../modalBook/ModalBook'
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
-import { fetchLivres } from "../../services/livres.service"
+import { fetchLivres , addLivre} from "../../services/livres.service"
+import Modal from 'react-modal';
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres);
    
-   const [show,setShow]=useState(false)
+   
    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState([])
    const [loading, setLoading] = useState(false)
@@ -23,17 +34,28 @@ function PageLivre() {
    const test = localStorage.getItem("user");
 
    const hideStyle = test ==="bibliothecaire" ? "styledisplay-block" : "styleDisplay-none";
+   const [titre, setTitre] = useState("")
+   const [auteur, setAuteur] = useState("")
+   const [edition, setEdition]= useState("")
+   const [nbE, setNbE] = useState(0)
+   var tabLivres = localStorage.getItem("livresTab");
+   var listLivres = JSON.parse(tabLivres);
 
-  const showModal = () => {
-    console.log("affichier ")
-    setShow(true);
-  };
+   const handleAddBook = () => {
+       addLivre(listLivres,titre,auteur,edition,nbE)
+       localStorage.setItem("livresTab",JSON.stringify(listLivres))
+       setIsOpen(false);
+     }
 
-  const hideModal = () => {
-    setShow(false);
-  };
-    
-
+  const [modalIsOpen,setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+ 
+ 
+  function closeModal(){
+    setIsOpen(false);
+  }
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
@@ -74,7 +96,7 @@ return (
        
     </MDBCol>
     <MDBCol md="4" className={hideStyle}>
-         <button md="4" onClick={showModal} > <i className="fa fa-plus" ></i></button> 
+    <button onClick={openModal}><i className="fa fa-plus" ></i></button> 
              </MDBCol>
 
    </div>
@@ -93,10 +115,16 @@ return (
          <TableBody>
           {listLivres.map(n => {    
             return (
+               test==="adherent"? (
+                n.etat==="non archivé" &&(
               <TableRow key={n.id}>
                 <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>
                                 
-              </TableRow>
+              </TableRow>)):(<TableRow key={n.id}>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>
+                                
+              </TableRow>)
+              
             );
           })}
             
@@ -106,10 +134,44 @@ return (
         }
       </Table>
     </Paper> 
-    <ModalBook show={show} handleClose={hideModal}>
-          <p>Modal</p>
-          <p>Data</p>
-    </ModalBook>
+    <div>
+        
+        <Modal
+          isOpen={modalIsOpen}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <div className="addBook-form">
+      <input
+        type="text"
+        name="title"
+        value={titre}
+        onChange={e =>setTitre(e.target.value)}
+      />
+      <input
+        type="text"
+        value={auteur}
+        name="auteur"
+        onChange={e => setAuteur(e.target.value)}
+      />
+      <input
+        type="text"
+        value={edition}
+        name="edition"
+        onChange={e => setEdition(e.target.value)}
+      />
+      <input
+        type="text"
+        value={nbE}
+        name="nbE"
+        onChange={e => setNbE(e.target.value)}
+      />
+      <button className="button" onClick={handleAddBook}>
+        Add a book
+      </button>
+      </div>
+        </Modal>
+      </div>
     </div>
 )
 }
