@@ -1,7 +1,8 @@
 import React , {useState}from 'react'
 import './ModalBook.css'
 import {addLivre} from '../../services/livres.service'
-export default function Modal ({ handleClose, show, children }) {
+
+export default function ModalBook ({ handleClose , show}) {
 
     const showHideClassName = show ? "modal display-block" : "modal display-none";
     const [titre, setTitre] = useState("")
@@ -45,6 +46,7 @@ export default function Modal ({ handleClose, show, children }) {
       <button className="button" onClick={handleAddBook}>
         Add a book
       </button>
+      
     </div>
           <button onClick={handleClose}>close</button>
         </section>

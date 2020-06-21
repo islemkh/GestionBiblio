@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import './Livre.css'
+import Livre from './Livre'
 import ModalBook from '../modalBook/ModalBook'
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import { fetchLivres } from "../../services/livres.service"
@@ -14,13 +14,15 @@ import { fetchLivres } from "../../services/livres.service"
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres);
-    const history = useHistory()
-    let { path } = useRouteMatch()
+   
    const [show,setShow]=useState(false)
    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState([])
    const [loading, setLoading] = useState(false)
 
+   const test = localStorage.getItem("user");
+
+   const hideStyle = test ==="bibliothecaire" ? "styledisplay-block" : "styleDisplay-none";
 
   const showModal = () => {
     console.log("affichier ")
@@ -30,7 +32,7 @@ function PageLivre() {
   const hideModal = () => {
     setShow(false);
   };
-    const test = localStorage.getItem("user")
+    
 
     useEffect(() => {
       let didCancel = false
@@ -40,7 +42,7 @@ function PageLivre() {
           setLivres([])
           setLoading(false)
         } else {
-          const result = await fetchLivres(searchValue)
+          const result = await fetchLivres(listLivres,searchValue)
           console.log("result: ", didCancel)
           if (!didCancel) {
             setLivres(result)
@@ -71,12 +73,9 @@ return (
       </MDBFormInline>
        
     </MDBCol>
-    <MDBCol md="4" className="add">
-    {test === "bibliothecaire"?(
+    <MDBCol md="4" className={hideStyle}>
          <button md="4" onClick={showModal} > <i className="fa fa-plus" ></i></button> 
-         ):(
-          <button className="btn" >test</button>
-      )}    </MDBCol>
+             </MDBCol>
 
    </div>
 <Paper>
@@ -95,15 +94,8 @@ return (
           {listLivres.map(n => {    
             return (
               <TableRow key={n.id}>
-                <TableCell > {n.titre}</TableCell>
-                <TableCell numeric>{n.auteur}</TableCell>
-                {test === "bibliothecaire"?(
-                <TableCell> <div> <button>Archiver</button>
-                <button onClick =  {() =>history.push(`${path}/${n.id}`)} >Details</button></div></TableCell>
-                ):(
-                  <TableCell><div><button className="emp">Emprunter</button> 
-                  <button onClick ={()=>history.push(`${path}/${n.id}`)} >Details</button></div></TableCell>
-                )}                
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>
+                                
               </TableRow>
             );
           })}
@@ -117,7 +109,7 @@ return (
     <ModalBook show={show} handleClose={hideModal}>
           <p>Modal</p>
           <p>Data</p>
-        </ModalBook>
+    </ModalBook>
     </div>
 )
 }
