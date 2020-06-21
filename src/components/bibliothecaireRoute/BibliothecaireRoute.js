@@ -10,7 +10,7 @@ import AdherentDetails from '../adherentDetails/AdherentDetails'
 import Bibliothécaire from '../login/Bibliothécaire'
 import ListeDemande from "../listeDemandeAdherents/ListeDemande"
 import BannirAdherent from "../banni-debanni/BannirAdherent"
-import PageLivre from '../livres/PageLivre'
+import PageLivre from '../pageLivre/PageLivre'
 import LivreDetails from '../livreDetails/LivreDetails'
 
 function BibliothecaireRoute() {

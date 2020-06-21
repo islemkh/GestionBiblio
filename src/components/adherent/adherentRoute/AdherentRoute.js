@@ -5,7 +5,7 @@ import {
   useRouteMatch
 } from "react-router-dom"
 import AdherentLayout from "./adherentLayout/AdherentLayout"
-import PageLivre from '../../livres/PageLivre'
+import PageLivre from '../../pageLivre/PageLivre'
 import LivreDetails from '../../livreDetails/LivreDetails'
 import Home from '../../home/Home'
 
