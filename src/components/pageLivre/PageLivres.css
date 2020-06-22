@@ -1,10 +1,11 @@
 .styleDisplay-block {
     display: block;
   }
-  
+
   .styleDisplay-none {
     display: none;
   }
+
   .pageLivres{
     margin-left: 150px;
     width: 900px;
@@ -12,9 +13,11 @@
       text-align: center;
       height: auto;
     }
+  
     .lab{
       margin-left: -30px;
     }
+
     .inp{
       width: 100%;
       padding: 12px 20px;
@@ -25,10 +28,10 @@
       box-sizing: border-box;
 
     }
+
     .btnAdd{
       background-color: #30a54a;
       border-radius: 8px;
-      margin-left: 40%;
       border:none;
       width: auto;
       height: auto;
@@ -38,12 +41,21 @@
       border-radius: 8px;
       border:none;
           }
-          .addLivre{
-            background-color: #30a54a;
+  .addLivre{
+      background-color: #30a54a;
       border-radius: 8px;
       border:none;
 
           }
+
+  .div1{
+    float: left;
+  }
+  .div2{
+    float: right;
+    margin-right: 22%;
+    margin-top: 7%;
+  }
  .edit{
   margin-right: 2%;
   background-color: #fdc02e;
@@ -54,10 +66,10 @@
     .h1{
       margin-top: 3%;
     }
-    .search{
-      margin-left: 38%;
-    }
+ 
     .searchBox{
       margin-bottom: 5%;
       margin-top: 5%;
+      margin-left: 35%;
+
     }

@@ -88,9 +88,9 @@ await delay(2000)
 return livres.find(livre => livre.id === IdLivre)
 }
 
-export const fetchLivres = async (tab,searchValue) => {
-  await delay(2000)
-  return tab.filter(livre => livre.titre.includes(searchValue))
+export const fetchLivres = async (searchValue) => {
+ // await delay(2000)
+  return livres.filter(livre => livre.titre.includes(searchValue) || livre.auteur.includes(searchValue))
 } 
 
 export const fetchLivre = async () => {

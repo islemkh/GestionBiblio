@@ -6,28 +6,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Livre from '../livres/Livre'
-import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import { fetchLivres ,addLivre } from "../../services/livres.service"
 import './PageLivres.css'
-import Modal from 'react-modal';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
-   const [show,setShow]=useState(false)
-   const [searchValue, setSearchValue] = useState("")
+
+    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState([])
    const [loading, setLoading] = useState(false)
 
@@ -60,17 +47,14 @@ function PageLivre() {
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
-        setLoading(true)
-        if (!searchValue) {
-          setLivres([])
-          setLoading(false)
-        } else {
-          const result = await fetchLivres(listLivres,searchValue)
+        //setLoading(true)
+          const result = await fetchLivres(searchValue)
           console.log("result: ", didCancel)
           if (!didCancel) {
             setLivres(result)
-            setLoading(false)
-          }
+
+            //setLoading(false)
+         
         }
       }
       fetchData()
@@ -82,24 +66,21 @@ function PageLivre() {
 return (
   <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
-    <div className="searchBox" >
-    <MDBCol md="6" className="search">
-      <MDBFormInline className="md-form">
-        <MDBIcon icon="search" />
         <input
-        type="search" 
-        placeholder="Search" 
-        aria-label="Search" 
-        value={searchValue}
-        onChange={e => setSearchValue(e.target.value)}
-        />
-      </MDBFormInline> 
-      
-    </MDBCol>
-    <div className={hideStyle}>
-         <button  onClick={openModal} className="btnAdd" > <i className="fa fa-plus" ></i></button> 
-             </div>  
-   </div>
+            type="search"
+            name="search"
+            placeholder=" titre/nom auteur"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+          />
+
+      <div className={hideStyle}>
+      <div className="div2">
+         <button  onClick={openModal} className="btnAdd" ><i className="fa fa-plus" ></i></button> 
+         </div>
+   </div>  
+
+    
    
 <Paper>
       <Table >
@@ -110,10 +91,7 @@ return (
             <TableCell ><b>Actions</b></TableCell>
           </TableRow>
         </TableHead>
-        {loading ? (
-          <div>Loading ... </div>
-        ) : (
-         <TableBody>
+               <TableBody>
           {listLivres.map(n => {    
             return (
               <TableRow key={n.id}>
@@ -123,16 +101,15 @@ return (
           })}
             
         </TableBody>
-      
-         )
-        }
       </Table>
     </Paper> 
-    <MDBContainer>
-      <MDBModal  isOpen={modalIsOpen} >
+
+    <MDBContainer >
+      <div className="fluid"></div>
+      <MDBModal  isOpen={modalIsOpen}   >
         <MDBModalHeader >Ajouter Livre</MDBModalHeader>
         <MDBModalBody>
-        <div >
+      <div >
       <input
         type="text"
         name="title"
@@ -151,11 +128,11 @@ return (
       />
     
       <input
-         className="inp"
+        className="inp"
         type="text"
         value={edition}
         name="edition"
-        placeholder="edition"
+        placeholder=" Ajouter edition"
         onChange={e => setEdition(e.target.value)}
       />
       
@@ -170,11 +147,11 @@ return (
             </div>       
        </MDBModalBody>
         <MDBModalFooter>
-          <button  onClick={closeModal} className="Bclose">close</button>
-          <button  onClick={handleAddBook} className="addLivre"> add livre</button>
+          <button  onClick={closeModal} className="Bclose">Annuler</button>
+          <button  onClick={handleAddBook} className="addLivre"> Ajouter</button>
         </MDBModalFooter>
       </MDBModal>
-    </MDBContainer>
+=    </MDBContainer>
   
     </div>
 )
