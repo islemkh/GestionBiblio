@@ -22,16 +22,32 @@ p{
 button {
     background-color: #3333cc;
     color: white;
-    
-    
     font-size: 15px;
-    margin: 4px 2px;
-    opacity: 0.6;
-    
-
+    margin: 4px 2px; 
     margin-bottom: 30px;
     width: 70px;
     height: 40px;
   }
-  
-  button:hover {opacity: 1}
+  .banni{
+    background-color: #d93749;
+    border-radius: 8px;
+    border:none;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    
+    }
+    .debanni{
+      background-color: #30a54a;
+      border-radius: 8px;
+      border:none;
+      width: auto;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
+      .details{
+        border-radius: 8px;
+        border:none;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
+  button:hover {opacity: 0.6}

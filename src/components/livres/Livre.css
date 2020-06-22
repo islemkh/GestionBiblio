@@ -1,10 +1,4 @@
-.pageAdherents{
-margin-left: 150px;
-width: 900px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: center;
-  height: auto;
-}
+
 .add{
   width: auto;
 float: right;
@@ -36,4 +30,32 @@ float: right;
 
 .styleDisplay-none {
   display: none;
+}
+.arch{
+background-color: #d93749;
+border-radius: 8px;
+border:none;
+
+}
+.desarch{
+  background-color: #30a54a;
+  border-radius: 8px;
+  border:none;
+  width: auto;
+  
+  }
+.emprunter{
+background-color: #fdc02e;
+width: auto;
+border-radius: 8px;
+border:none;
+margin-left: 2%;
+
+
+}
+.details{
+  border-radius: 8px;
+  border:none;
+margin-left: 2%;
+
 }

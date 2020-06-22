@@ -1,20 +1,27 @@
-import React  from "react"
+import React,{useState}  from "react"
 import './Adherent.css'
 import profilepic from '../../assets/im1.png'
 import { useRouteMatch,useHistory} from 'react-router-dom'
+import { bannir, updateTab } from "../../services/adherents.service"
+import AlertMassage from "../alert/AlertMassage";
 
 function Adherent(
    { id,
     nom,
     prenom,
     statut,
+    adheretsTab
     }
 )
 {
  
-
-
-    
+  const [adherentB, setAdherentB] = useState(adheretsTab)
+  const [alert ,setAlert]=useState("")
+   
+  const bannirAdherent = () =>  {
+    const resultB  = bannir (adheretsTab,id); 
+  setAdherentB(resultB)
+  }
     
 const history = useHistory()
      let { path } = useRouteMatch()
@@ -23,12 +30,18 @@ const history = useHistory()
     }
     
     const handleClickBannir = () => {
-      history.push(`${path}/bannir/${id}`);
+      bannirAdherent()
+      updateTab(adheretsTab,adherentB)
+  localStorage.setItem("adherentsTab",JSON.stringify(adheretsTab))
+  setAlert({ msg: "Adherent banni", key: Math.random() ,severity : "error"});
      
   }
 
   const handleClickDeBannir = () => {
-    history.push(`${path}/bannir/${id}`);
+    bannirAdherent()
+    updateTab(adheretsTab,adherentB)
+  localStorage.setItem("adherentsTab",JSON.stringify(adheretsTab))
+  setAlert({ msg: "Adherent débanni", key: Math.random() ,severity : "success"});
    
 }
     return (
@@ -45,12 +58,13 @@ const history = useHistory()
       <div className="action">
             
             
-          <button onClick={handleClickDetails}>details</button>
+          <button onClick={handleClickDetails} className="details" >details</button>
           {statut==="active"?(
-          <button onClick={handleClickBannir} >bannir</button>):
-          (<button onClick={handleClickDeBannir}>débannir</button>)
+          <button onClick={handleClickBannir} className="banni" >bannir</button>):
+          (<button onClick={handleClickDeBannir}className="debanni" >débannir</button>)
             }
       </div>
+      {alert ? <AlertMassage key={alert.key} message={alert.msg} severity={alert.severity}/> : null} 
       </div>
     )
 }

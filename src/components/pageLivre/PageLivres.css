@@ -1,0 +1,63 @@
+.styleDisplay-block {
+    display: block;
+  }
+  
+  .styleDisplay-none {
+    display: none;
+  }
+  .pageLivres{
+    margin-left: 150px;
+    width: 900px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      text-align: center;
+      height: auto;
+    }
+    .lab{
+      margin-left: -30px;
+    }
+    .inp{
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+
+    }
+    .btnAdd{
+      background-color: #30a54a;
+      border-radius: 8px;
+      margin-left: 40%;
+      border:none;
+      width: auto;
+      height: auto;
+    }
+    .Bclose{
+      background-color: #d93749;
+      border-radius: 8px;
+      border:none;
+          }
+          .addLivre{
+            background-color: #30a54a;
+      border-radius: 8px;
+      border:none;
+
+          }
+ .edit{
+  margin-right: 2%;
+  background-color: #fdc02e;
+  width: auto;
+  border-radius: 8px;
+  border:none;
+ }
+    .h1{
+      margin-top: 3%;
+    }
+    .search{
+      margin-left: 38%;
+    }
+    .searchBox{
+      margin-bottom: 5%;
+      margin-top: 5%;
+    }

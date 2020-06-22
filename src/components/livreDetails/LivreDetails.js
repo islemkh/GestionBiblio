@@ -36,6 +36,7 @@ function LivreDetails() {
           <div className="label"> Auteur : <span className="value">{livre.auteur}</span></div>
           <div className="label"> Edition : <span className="value">{livre.edition}</span></div>
          <div className="label"> Nombre d'exemplaires : <span className="value">{livre.NbExemplaires}</span></div>
+         <div className="label"> Etat : <span className="value">{livre.etat}</span></div>
          </div>
         </>
       )}

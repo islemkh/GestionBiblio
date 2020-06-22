@@ -104,15 +104,30 @@ export const fetchLivre = async () => {
   return livres
 }
 
-export  const archiver = function (tab,idB) {
+export  const archiver = function (tab,idA) {
+  
   for(var i = 0; i < tab.length; i++) {
-    if (tab[i].id === idB) {
-      
-        tab[i].etat="archivé";  
+    if (tab[i].id === idA) {
+      if(tab[i].etat==="archivé"){
+        tab[i].etat="non archivé";  
       return (tab[i]);
-      
+      }
+      else{
+       tab[i].etat="archivé";  
+      return (tab[i]);
+      }
     }
   }
     return null;
+    
 }
 
+export  const updateTab = function (tab1,tab2) {
+  for(var i = 0; i < tab1.length; i++) {
+    if (tab1[i].id === tab2.id) {
+       tab1[i]=tab2;  
+      return (tab1);
+      }
+    }
+    return null;
+}

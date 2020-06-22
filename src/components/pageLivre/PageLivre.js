@@ -1,16 +1,16 @@
 import React, { useState , useEffect } from "react"
-import {useRouteMatch, useHistory} from 'react-router-dom'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Livre from './Livre'
-import ModalBook from '../modalBook/ModalBook'
+import Livre from '../livres/Livre'
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
-import { fetchLivres , addLivre} from "../../services/livres.service"
+import { fetchLivres ,addLivre , archiver} from "../../services/livres.service"
+import './PageLivres.css'
 import Modal from 'react-modal';
+import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 const customStyles = {
   content : {
@@ -22,11 +22,11 @@ const customStyles = {
     transform             : 'translate(-50%, -50%)'
   }
 };
+
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
-    var listLivres = JSON.parse(tabLivres);
-   
-   
+    var listLivres = JSON.parse(tabLivres); 
+   const [show,setShow]=useState(false)
    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState([])
    const [loading, setLoading] = useState(false)
@@ -34,6 +34,7 @@ function PageLivre() {
    const test = localStorage.getItem("user");
 
    const hideStyle = test ==="bibliothecaire" ? "styledisplay-block" : "styleDisplay-none";
+
    const [titre, setTitre] = useState("")
    const [auteur, setAuteur] = useState("")
    const [edition, setEdition]= useState("")
@@ -46,16 +47,16 @@ function PageLivre() {
        localStorage.setItem("livresTab",JSON.stringify(listLivres))
        setIsOpen(false);
      }
+     function closeModal(){
+      setIsOpen(false);
+    }
 
   const [modalIsOpen,setIsOpen] = React.useState(false);
   function openModal() {
     setIsOpen(true);
   }
- 
- 
-  function closeModal(){
-    setIsOpen(false);
-  }
+    
+
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
@@ -77,12 +78,13 @@ function PageLivre() {
         didCancel = true
       }
     }, [searchValue])
+    
 
 return (
-  <div className="pageAdherents">       
+  <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
-    <div>
-    <MDBCol md="4" className="search">
+    <div className="searchBox" >
+    <MDBCol md="6" className="search">
       <MDBFormInline className="md-form">
         <MDBIcon icon="search" />
         <input
@@ -92,39 +94,38 @@ return (
         value={searchValue}
         onChange={e => setSearchValue(e.target.value)}
         />
-      </MDBFormInline>
-       
+      </MDBFormInline> 
+      
     </MDBCol>
-    <MDBCol md="4" className={hideStyle}>
-    <button onClick={openModal}><i className="fa fa-plus" ></i></button> 
-             </MDBCol>
-
+    <div className={hideStyle}>
+         <button  onClick={openModal} className="btnAdd" > <i className="fa fa-plus" ></i></button> 
+             </div>  
    </div>
+   
 <Paper>
       <Table >
         <TableHead>
           <TableRow>
             <TableCell ><b>Titre</b></TableCell>
             <TableCell ><b>Auteur</b></TableCell>
+            <TableCell ><b>Actions</b></TableCell>
           </TableRow>
         </TableHead>
         {loading ? (
           <div>Loading ... </div>
         ) : (
-        
          <TableBody>
           {listLivres.map(n => {    
             return (
-               test==="adherent"? (
+              test==="adherent"? (
                 n.etat==="non archivé" &&(
               <TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
                                 
               </TableRow>)):(<TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} archiverBook ={()=>archiver(listLivres,n.etat)} etat={n.etat} />
                                 
               </TableRow>)
-              
             );
           })}
             
@@ -134,44 +135,54 @@ return (
         }
       </Table>
     </Paper> 
-    <div>
-        
-        <Modal
-          isOpen={modalIsOpen}
-          style={customStyles}
-          contentLabel="Example Modal"
-        >
-          <div className="addBook-form">
+    <MDBContainer>
+      <MDBModal  isOpen={modalIsOpen} >
+        <MDBModalHeader >Ajouter Livre</MDBModalHeader>
+        <MDBModalBody>
+        <div >
       <input
         type="text"
         name="title"
+        placeholder="ajouter titre"
         value={titre}
+        className="inp"
         onChange={e =>setTitre(e.target.value)}
       />
       <input
         type="text"
         value={auteur}
         name="auteur"
+        className="inp"
         onChange={e => setAuteur(e.target.value)}
+        placeholder="Ajouter auteur"
       />
+    
       <input
+         className="inp"
         type="text"
         value={edition}
         name="edition"
+        placeholder="edition"
         onChange={e => setEdition(e.target.value)}
       />
+      
       <input
-        type="text"
+         className="inp"
+        type="number"
+        placeholder="nbre d'exemplaire"
         value={nbE}
         name="nbE"
         onChange={e => setNbE(e.target.value)}
       />
-      <button className="button" onClick={handleAddBook}>
-        Add a book
-      </button>
-      </div>
-        </Modal>
-      </div>
+            </div>       
+       </MDBModalBody>
+        <MDBModalFooter>
+          <button  onClick={closeModal} className="Bclose">close</button>
+          <button  onClick={handleAddBook} className="addLivre"> add livre</button>
+        </MDBModalFooter>
+      </MDBModal>
+    </MDBContainer>
+  
     </div>
 )
 }
