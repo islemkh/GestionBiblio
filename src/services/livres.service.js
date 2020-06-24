@@ -84,7 +84,18 @@ export  const addLivre = function (tab,titre, auteur,edition,NbExemplaires) {
 } 
  //addLivre('Midnight inking', true);
 
+ export  const emprunter = function (tabBook,idE ,tabEmp,titre, date_emprunte, date_retour, user) {
+  for(var i = 0; i < tabBook.length; i++) {
+    if (tabBook[i].id === idE) {
 
+      tabBook[i].NbExemplaires=-1;  
+      return (tabBook);   
+    }
+  }
+  tabEmp.push({id: (tabEmp.length).toString() ,titre: titre, date_emprunte: date_emprunte ,date_retour: date_retour,user:user });
+  console.log('livre emprunter successfully !!');
+  console.log('-------------------------------------------------');
+} 
 
  function delay(ms){
   return new Promise (resolve =>setTimeout(resolve,ms) )
@@ -95,9 +106,9 @@ await delay(2000)
 return livres.find(livre => livre.id === IdLivre)
 }
 
-export const fetchLivres = async (tab,searchValue) => {
+export const searchLivres = async (tab,searchValue) => {
   await delay(2000)
-  return tab.filter(livre => livre.titre.includes(searchValue))
+  return tab.filter(livre => livre.titre.includes(searchValue) ||livre.auteur.includes(searchValue))
 } 
 
 export const fetchLivre = async () => {

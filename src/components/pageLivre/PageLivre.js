@@ -7,10 +7,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Livre from '../livres/Livre'
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
-import { fetchLivres ,addLivre , archiver} from "../../services/livres.service"
+import { searchLivres ,addLivre } from "../../services/livres.service"
 import './PageLivres.css'
 import Modal from 'react-modal';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 const customStyles = {
   content : {
@@ -26,9 +26,8 @@ const customStyles = {
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
-   const [show,setShow]=useState(false)
    const [searchValue, setSearchValue] = useState("")
-   const [livres, setLivres] = useState([])
+   const [livres, setLivres] = useState(listLivres)
    const [loading, setLoading] = useState(false)
 
    const test = localStorage.getItem("user");
@@ -39,9 +38,7 @@ function PageLivre() {
    const [auteur, setAuteur] = useState("")
    const [edition, setEdition]= useState("")
    const [nbE, setNbE] = useState(0)
-   var tabLivres = localStorage.getItem("livresTab");
-   var listLivres = JSON.parse(tabLivres);
-
+// addBook
    const handleAddBook = () => {
        addLivre(listLivres,titre,auteur,edition,nbE)
        localStorage.setItem("livresTab",JSON.stringify(listLivres))
@@ -56,16 +53,16 @@ function PageLivre() {
     setIsOpen(true);
   }
     
-
+// recherche
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
         setLoading(true)
         if (!searchValue) {
-          setLivres([])
+          setLivres(listLivres)
           setLoading(false)
         } else {
-          const result = await fetchLivres(listLivres,searchValue)
+          const result = await searchLivres(listLivres,searchValue)
           console.log("result: ", didCancel)
           if (!didCancel) {
             setLivres(result)
@@ -115,7 +112,7 @@ return (
           <div>Loading ... </div>
         ) : (
          <TableBody>
-          {listLivres.map(n => {    
+          {livres.map(n => {    
             return (
               test==="adherent"? (
                 n.etat==="non archivé" &&(
@@ -123,7 +120,7 @@ return (
                 <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
                                 
               </TableRow>)):(<TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} archiverBook ={()=>archiver(listLivres,n.etat)} etat={n.etat} />
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} />
                                 
               </TableRow>)
             );

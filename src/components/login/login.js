@@ -79,6 +79,7 @@ const submitForm = event => {
       //success 
       else{
        localStorage.setItem("user","adherent")
+       localStorage.setItem("userMail",email)
        setadh(true)
       }
     }

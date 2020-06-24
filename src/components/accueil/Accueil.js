@@ -8,7 +8,8 @@ export default function Accueil() {
 
   const [adherents, setAdherents] = useState([])
   const [livres, setLivres] = useState([])
-  
+  const [emprunteTab] = useState([])
+  localStorage.setItem("emprunteTab", JSON.stringify(emprunteTab));
   //stokage des books
       useEffect(() => {
           const fetchData = async () => {
@@ -28,6 +29,7 @@ useEffect(() => {
     fetchData()
     localStorage.setItem("adherentsTab", JSON.stringify(adherents));
   },[adherents])
+
   return (
 <div className="accueilStyle">
       <div className="header">
