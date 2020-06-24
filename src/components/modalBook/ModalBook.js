@@ -2,7 +2,7 @@ import React , {useState}from 'react'
 import './ModalBook.css'
 import {addLivre} from '../../services/livres.service'
 
-export default function ModalBook ({ handleClose , show}) {
+export default function ModalBook ({ show, handleClose  }) {
 
     const showHideClassName = show ? "modal display-block" : "modal display-none";
     const [titre, setTitre] = useState("")
@@ -11,10 +11,12 @@ export default function ModalBook ({ handleClose , show}) {
     const [nbE, setNbE] = useState(0)
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres);
+
     const handleAddBook = () => {
         addLivre(listLivres,titre,auteur,edition,nbE)
         localStorage.setItem("livresTab",JSON.stringify(listLivres))
       }
+
     return (
       <div className={showHideClassName}>
         <section className="modal-main">

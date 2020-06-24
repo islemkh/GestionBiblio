@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AlertMassage({ message, severity }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
 
   const handleClose = (event, reason) => {
@@ -32,7 +32,7 @@ export default function AlertMassage({ message, severity }) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes}>
       <Snackbar 
       open={open} 
       anchorOrigin={{

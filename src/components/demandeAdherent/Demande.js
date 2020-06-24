@@ -1,30 +1,32 @@
-import React from "react"
+import React , {useState} from "react"
 import profilepic from '../../assets/im1.png'
-import {addAdherents} from '../../services/adherents.service'
+import {addAdherents, effacerAdherentById} from '../../services/adherents.service'
+import './Demande.css'
 function Demande(
   { tabDemandes,
     firstName,
     lastName,
     myemail,
-    mdp
+    mdp,
+    id
   }
 )
 {
   var tabAdherents = localStorage.getItem("adherentsTab");
   var listaAdherents = JSON.parse(tabAdherents);
-  
+  const [tabDemande, setTabDemande]=useState(tabDemandes)
     const statut ="active"
 
-    const handleClickRefuser = (myid) => {
-      var i=tabDemandes.findIndex(demande=>demande.id===myid);
-      console.log(i);
-      if(i!==0){
-        tabDemandes.splice(tabDemandes[0],1);
-        console.log(tabDemandes);
+    const effacerDemande =()=>{
+      const resultD = effacerAdherentById(tabDemandes,id);
+      setTabDemande(resultD)
+    }
+    const handleClickRefuser = () => {
+      effacerDemande()
         localStorage.setItem("demandes", JSON.stringify(tabDemandes));
       } 
       
-    }
+    
     const handleClickAccepter = () => {
         addAdherents(
         listaAdherents,
@@ -34,8 +36,10 @@ function Demande(
         mdp,
         statut
       )
+      
       localStorage.setItem("adherentsTab", JSON.stringify(listaAdherents));
-      handleClickRefuser()
+      effacerDemande()
+      localStorage.setItem("demandes", JSON.stringify(tabDemandes));
     }
     
     
@@ -48,16 +52,16 @@ function Demande(
             
         <img className='profilepic' src={profilepic} alt="profile"/> 
           <div className="title">
-           <p>{firstName} {lastName}</p> 
-            <p>{myemail}</p>
+           <h6>{firstName} {lastName}</h6> 
+            <h6>{myemail}</h6>
 
           </div>
         
       
       <div className="action">
         
-           <button onClick={handleClickRefuser}>refuser</button>
-          <button onClick={handleClickAccepter}>accepter</button>
+           <button onClick={handleClickRefuser} className="refuser">refuser</button>
+          <button onClick={handleClickAccepter}className="accepter">accepter</button>
           
       </div></div>
           

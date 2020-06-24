@@ -37,7 +37,13 @@ border-radius: 8px;
 border:none;
 
 }
-
+.desarch{
+  background-color: #30a54a;
+  border-radius: 8px;
+  border:none;
+  width: auto;
+  
+  }
 .emprunter{
 background-color: #fdc02e;
 width: auto;

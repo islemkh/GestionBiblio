@@ -1,10 +1,10 @@
 .styleDisplay-block {
     display: block;
   }
-
   .styleDisplay-none {
     display: none;
   }
+
 
   .pageLivres{
     margin-left: 150px;
@@ -17,6 +17,7 @@
     .lab{
       margin-left: -30px;
     }
+
 
     .inp{
       width: 100%;
@@ -65,11 +66,11 @@
  }
     .h1{
       margin-top: 3%;
-    }
- 
+    } 
     .searchBox{
       margin-bottom: 5%;
       margin-top: 5%;
       margin-left: 35%;
+
 
     }

@@ -19,6 +19,7 @@ function ListeDemande()
         {tabDemandes.map((demande, index)=> (
           <Demande
             key={index}
+            id={demande.id}
               firstName={demande.firstName}
               lastName={demande.lastName}
              myemail={demande.email}

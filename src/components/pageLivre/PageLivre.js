@@ -6,15 +6,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Livre from '../livres/Livre'
-import { fetchLivres ,addLivre } from "../../services/livres.service"
+import ListeLivres from '../listeLivres/ListeLivres'
+
 import './PageLivres.css'
 import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
+import { fetchLivres ,addLivre , archiver} from "../../services/livres.service"
+import './PageLivres.css'
+
 
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
-
     const [searchValue, setSearchValue] = useState("")
+
    const [livres, setLivres] = useState([])
    const [loading, setLoading] = useState(false)
 
@@ -42,19 +47,23 @@ function PageLivre() {
   function openModal() {
     setIsOpen(true);
   }
-    
+  const handleChange = e => {
+     setSearchValue(e.target.value)} 
 
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
-        //setLoading(true)
-          const result = await fetchLivres(searchValue)
+        setLoading(true)
+        if (!searchValue) {
+          setLivres([])
+          setLoading(false)
+        } else {
+          const result = await fetchLivres(listLivres,searchValue)
           console.log("result: ", didCancel)
           if (!didCancel) {
             setLivres(result)
-
-            //setLoading(false)
-         
+            setLoading(false)
+          }
         }
       }
       fetchData()
@@ -66,21 +75,20 @@ function PageLivre() {
 return (
   <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
-        <input
-            type="search"
-            name="search"
-            placeholder=" titre/nom auteur"
-            value={searchValue}
-            onChange={e => setSearchValue(e.target.value)}
-          />
-
-      <div className={hideStyle}>
-      <div className="div2">
-         <button  onClick={openModal} className="btnAdd" ><i className="fa fa-plus" ></i></button> 
-         </div>
-   </div>  
-
-    
+    <div className="searchBox" >
+<label>Recherche d'un livre </label> 
+<div className="App">
+      <input
+        type="search"
+        placeholder="Search"
+        value={searchValue}
+        onChange={handleChange}
+      /> 
+    </div>
+   <div className={hideStyle}>
+         <button  onClick={openModal} className="btnAdd" > <i className="fa fa-plus" ></i></button> 
+             </div>  
+   </div>
    
 <Paper>
       <Table >
@@ -90,26 +98,29 @@ return (
             <TableCell ><b>Auteur</b></TableCell>
             <TableCell ><b>Actions</b></TableCell>
           </TableRow>
-        </TableHead>
-               <TableBody>
+        </TableHead>       
+         <TableBody>
           {listLivres.map(n => {    
             return (
+              test==="adherent"? (
+                n.etat==="non archivé" &&(
               <TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur}/>                          
-              </TableRow>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
+                                
+              </TableRow>)):(<TableRow key={n.id}>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} archiverBook ={()=>archiver(listLivres,n.etat)} etat={n.etat} />                              
+              </TableRow>)
             );
           })}
             
         </TableBody>
       </Table>
     </Paper> 
-
-    <MDBContainer >
-      <div className="fluid"></div>
-      <MDBModal  isOpen={modalIsOpen}   >
+    <MDBContainer>
+      <MDBModal  isOpen={modalIsOpen} >
         <MDBModalHeader >Ajouter Livre</MDBModalHeader>
         <MDBModalBody>
-      <div >
+        <div >
       <input
         type="text"
         name="title"
@@ -151,8 +162,7 @@ return (
           <button  onClick={handleAddBook} className="addLivre"> Ajouter</button>
         </MDBModalFooter>
       </MDBModal>
-=    </MDBContainer>
-  
+    </MDBContainer>
     </div>
 )
 }

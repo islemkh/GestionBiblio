@@ -28,5 +28,26 @@ button {
     width: 70px;
     height: 40px;
   }
-  
+  .banni{
+    background-color: #d93749;
+    border-radius: 8px;
+    border:none;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    
+    }
+    .debanni{
+      background-color: #30a54a;
+      border-radius: 8px;
+      border:none;
+      width: auto;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
+      .details{
+        border-radius: 8px;
+        border:none;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
   button:hover {opacity: 0.6}

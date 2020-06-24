@@ -23,7 +23,7 @@ const adherentsTab = [
     nom: "Maryem",
     prenom: "Souyah",
     email: "maryem@gmail.com",
-    password:"333",
+    password:"123",
     statut : "banni"
 
 },
@@ -43,6 +43,14 @@ const adherentsTab = [
     email: "ines@gmail.com",
     password:"123",
     statut : "banni"
+
+},{
+  id:"6",
+  nom: "Ahmed",
+  prenom: "Amri",
+  email: "ahmed@gmail.com",
+  password:"123",
+  statut : "active"
 
 }]
 
@@ -98,3 +106,12 @@ export const getAdherentById = function (tab,id) {
  //jebt lo5ra 8lot 5ater lo5ra include 5ali nfassr oss include yaani hata ken 7arf shih chyraja3 7aja
 }
 
+export const effacerAdherentById = function (tab,id) { 
+  for(var i = 0; i < tab.length; i++) {
+    if (tab[i].id === id) {
+        tab.splice(i,1);
+      return (tab);
+    }
+  }
+  return null;
+}
