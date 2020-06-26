@@ -22,24 +22,6 @@ export const AdherentMenu = (
       <ListItemText primary="Accueil" />
     </ListItem>
      </Link>
-    <Link to="/" style={{ color: '#666666', textDecoration: 'none' }}  replace>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="emprunter " />
-    </ListItem>
-    </Link>
-    
-     
-    <Link to="/adherent/" style={{ color: '#666666', textDecoration: 'none' }} replace>
-      <ListItem button >
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Liste des adherents" /> 
-    </ListItem>
-    </Link>
     
     <Link to="/adherent/livre" style={{ color: '#666666', textDecoration: 'none' }} replace>
     <ListItem button>

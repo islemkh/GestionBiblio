@@ -11,6 +11,7 @@ import Bibliothécaire from '../login/Bibliothécaire'
 import ListeDemande from "../listeDemandeAdherents/ListeDemande"
 import PageLivre from '../pageLivre/PageLivre'
 import LivreDetails from '../livreDetails/LivreDetails'
+import ListeEmprunte from "../listeEmprunte/ListeEmprunte"
 
 function BibliothecaireRoute() {
     let { path } = useRouteMatch()
@@ -18,9 +19,13 @@ function BibliothecaireRoute() {
   return (
     <div className="biblio-route">    
       <BiblioLayout>
+        
         <Switch>
          <Route exact path={`${path}/`}>
           < Bibliothécaire/>
+          </Route>
+          <Route exact path={`${path}/empruntes`}>
+            < ListeEmprunte/>
           </Route>
           <Route exact path={`${path}/adherents`}>
             < ListeAdherents/>

@@ -4,12 +4,13 @@ import {Link} from 'react-router-dom'
 import { fetchLivre } from '../../services/livres.service'
 import './Accueil.css'
 import { Slideshow } from '../slideGalery/SlideGal';
+import { fetchEmpruntes } from '../../services/emprunte.service';
 export default function Accueil() {
 
   const [adherents, setAdherents] = useState([])
   const [livres, setLivres] = useState([])
-  const [emprunteTab] = useState([])
-  localStorage.setItem("emprunteTab", JSON.stringify(emprunteTab));
+  const [emprunte,setEmprunte] = useState([])
+  
   //stokage des books
       useEffect(() => {
           const fetchData = async () => {
@@ -29,6 +30,16 @@ useEffect(() => {
     fetchData()
     localStorage.setItem("adherentsTab", JSON.stringify(adherents));
   },[adherents])
+
+  //stokage des empruntes
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await fetchEmpruntes()
+      setEmprunte(result)
+      }
+    fetchData()
+    localStorage.setItem("emprunteTab", JSON.stringify(emprunte));
+  },[emprunte])
 
   return (
 <div className="accueilStyle">

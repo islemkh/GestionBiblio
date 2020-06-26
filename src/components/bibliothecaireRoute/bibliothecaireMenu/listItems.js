@@ -22,12 +22,12 @@ export const mainListItems = (
       <ListItemText primary="Accueil" />
     </ListItem>
      </Link>
-    <Link to="/" style={{ color: '#666666', textDecoration: 'none' }}>
+    <Link to="/biblio/empruntes" style={{ color: '#666666', textDecoration: 'none' }}>
     <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon />
       </ListItemIcon>
-      <ListItemText primary="emprunter " />
+      <ListItemText primary="Liste des empruntes " />
     </ListItem>
     </Link>
     

@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Livre from '../livres/Livre'
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import { searchLivres ,addLivre } from "../../services/livres.service"
+import {nbEmprunte} from '../../services/emprunte.service'
 import './PageLivres.css'
 import Modal from 'react-modal';
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
@@ -29,7 +30,10 @@ function PageLivre() {
    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState(listLivres)
    const [loading, setLoading] = useState(false)
-
+   const userMail = localStorage.getItem("userMail");
+   var tabEmprunte = localStorage.getItem("emprunteTab");
+   var emprunteTab = JSON.parse(tabEmprunte); 
+   const [nbBook ,setNbBook]=useState(0)
    const test = localStorage.getItem("user");
 
    const hideStyle = test ==="bibliothecaire" ? "styledisplay-block" : "styleDisplay-none";
@@ -76,7 +80,18 @@ function PageLivre() {
       }
     }, [searchValue])
     
+    useEffect(() => {
+      const compterLivre = async () =>  {
+        const resultC  = await nbEmprunte (emprunteTab,userMail);
+       
+      setNbBook(resultC)
+      
+      }
+      compterLivre()
+    },[emprunteTab,userMail] )
 
+
+    
 return (
   <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
@@ -117,10 +132,10 @@ return (
               test==="adherent"? (
                 n.etat==="non archivé" &&(
               <TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat} tabBook ={listLivres} nbBook={nbBook} emprunteTab={emprunteTab}/>
                                 
               </TableRow>)):(<TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} />
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} emprunteTab={emprunteTab} />
                                 
               </TableRow>)
             );
