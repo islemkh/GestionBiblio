@@ -29,7 +29,7 @@ const empruntes = [
         emprunteur: "maryem@gmail.com",
       },
       {
-        id:"4",
+        id:"5",
         titre: "Les Fourmis",
         date_emprunte: "6-08-2020",
         date_retour: "Pas encore",
@@ -65,11 +65,11 @@ const empruntes = [
         retour=retour.toString()
         for(var i = 0; i < tabEmp.length; i++) {
             if (tabEmp[i].emprunteur === user && tabEmp[i].titre === titre) {
-              tabEmp[i].date_retour= retour 
-              return (tabEmp);   
+              tabEmp[i].date_retour= retour    
             } 
           } 
-      } 
+          return (tabEmp)
+          } 
 // MAJ le nbre d'exemplaire apres le retour du book
       export  const majNbE = function (tabBook,idE) {
        

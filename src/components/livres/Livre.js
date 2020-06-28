@@ -72,10 +72,11 @@ const handleClickEmprunter= () =>{
 }
 // Retourner book
 const retournerLivre = () =>  {
-  const resultA  = retourner (tabBook,id,emprunteTab,titre,userMail);
+  const resultA  = retourner (emprunteTab,titre,userMail);
+  setBook(resultA)
   const resultMAJ  = majNbE (tabBook,id);
   tabBook=resultMAJ; 
-setBook(resultA)
+
 
 console.log("livre emprunter")
 }
@@ -92,12 +93,10 @@ const handleClickRetourner= () =>{
 useEffect(() => {
   const findLivre = async () =>  {
     const resultC  = await titreEmprunte (emprunteTab,titre,userMail);
-   
-  setTrouvé(resultC)
-  
+   setTrouvé(resultC)
   }
   findLivre()
-},[titre,userMail] )
+},[emprunteTab,titre,userMail] )
 
     return (
 <>   
