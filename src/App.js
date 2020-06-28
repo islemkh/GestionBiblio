@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import Login from "./components/login/Login"
+import Login from "./components/login/login"
 import SignUp from "./components/login/SignUp"
 import Accueil from './components/accueil/Accueil'
 import {

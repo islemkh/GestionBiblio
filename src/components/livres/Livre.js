@@ -2,8 +2,7 @@ import React , {useState} from "react"
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import {useRouteMatch, useHistory} from 'react-router-dom'
-import './Livre.css'
-import {updateTab, archiver} from '../../services/livres.service'
+import {updateTab, archiver, emprunter} from '../../services/livres.service'
 import './Livre.css'
 import AlertMassage from "../alert/AlertMassage";
 
@@ -12,16 +11,21 @@ function Livre({
     titre,
     auteur,
     etat,
-    archiverBook,
     tabBook
 }
 )
 {
   const [etatA , setBook]=useState(tabBook)
     const test = localStorage.getItem("user");
+    const userMail = localStorage.getItem("userMail");
+    var tabEmprunte = localStorage.getItem("emprunteTab");
+    var emprunteTab = JSON.parse(tabEmprunte); 
     const history = useHistory()
     let { path } = useRouteMatch()
     const [alert ,setAlert]=useState("")
+
+
+ //arshiver
  const archiverLivre = () =>  {
    const resultA  = archiver (tabBook,id);
    console.log(resultA) 
@@ -29,6 +33,7 @@ function Livre({
 
  console.log("livre archiverrrrrrrr")
  }
+
  const handleClickArchiver = () =>{
    console.log(etatA)
  archiverLivre()
@@ -45,6 +50,15 @@ localStorage.setItem("livresTab",JSON.stringify(tabBook))
 setAlert({ msg: "Livre désarchivé", key: Math.random() ,severity : "success"});
 
 }
+// emprunter
+const emprunterLivre = () =>  {
+  const resultA  = emprunter (tabBook,id,emprunteTab,titre,userMail);
+  console.log(resultA) 
+setBook(resultA)
+
+console.log("livre archiverrrrrrrr")
+}
+
     return (
 <>   
            <TableCell >{titre}</TableCell>

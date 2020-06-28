@@ -11,16 +11,17 @@ import ListeLivres from '../listeLivres/ListeLivres'
 import './PageLivres.css'
 import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
-import { fetchLivres ,addLivre , archiver} from "../../services/livres.service"
+import { searchLivres ,addLivre } from "../../services/livres.service"
 import './PageLivres.css'
+import Modal from 'react-modal';
 
 
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
-    const [searchValue, setSearchValue] = useState("")
 
-   const [livres, setLivres] = useState([])
+   const [searchValue, setSearchValue] = useState("")
+   const [livres, setLivres] = useState(listLivres)
    const [loading, setLoading] = useState(false)
 
    const test = localStorage.getItem("user");
@@ -31,9 +32,7 @@ function PageLivre() {
    const [auteur, setAuteur] = useState("")
    const [edition, setEdition]= useState("")
    const [nbE, setNbE] = useState(0)
-   var tabLivres = localStorage.getItem("livresTab");
-   var listLivres = JSON.parse(tabLivres);
-
+// addBook
    const handleAddBook = () => {
        addLivre(listLivres,titre,auteur,edition,nbE)
        localStorage.setItem("livresTab",JSON.stringify(listLivres))
@@ -50,15 +49,16 @@ function PageLivre() {
   const handleChange = e => {
      setSearchValue(e.target.value)} 
 
+
     useEffect(() => {
       let didCancel = false
       const fetchData = async () => {
         setLoading(true)
         if (!searchValue) {
-          setLivres([])
+          setLivres(listLivres)
           setLoading(false)
         } else {
-          const result = await fetchLivres(listLivres,searchValue)
+          const result = await searchLivres(listLivres,searchValue)
           console.log("result: ", didCancel)
           if (!didCancel) {
             setLivres(result)
@@ -76,15 +76,12 @@ return (
   <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
     <div className="searchBox" >
-<label>Recherche d'un livre </label> 
-<div className="App">
       <input
         type="search"
-        placeholder="Search"
+        placeholder="Recherche livre"
         value={searchValue}
         onChange={handleChange}
       /> 
-    </div>
    <div className={hideStyle}>
          <button  onClick={openModal} className="btnAdd" > <i className="fa fa-plus" ></i></button> 
              </div>  
@@ -100,7 +97,7 @@ return (
           </TableRow>
         </TableHead>       
          <TableBody>
-          {listLivres.map(n => {    
+          {livres.map(n => {    
             return (
               test==="adherent"? (
                 n.etat==="non archivé" &&(
@@ -108,8 +105,8 @@ return (
                 <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
                                 
               </TableRow>)):(<TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} archiverBook ={()=>archiver(listLivres,n.etat)} etat={n.etat} />                              
-              </TableRow>)
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} />
+                                              </TableRow>)
             );
           })}
             
