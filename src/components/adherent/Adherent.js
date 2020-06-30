@@ -17,26 +17,20 @@ function Adherent(
  
   const [adherentB, setAdherentB] = useState(adheretsTab)
   const [alert ,setAlert]=useState("")
-   
+
+    //Bannir
   const bannirAdherent = () =>  {
     const resultB  = bannir (adheretsTab,id); 
   setAdherentB(resultB)
   }
-    
-const history = useHistory()
-     let { path } = useRouteMatch()
-     const handleClickDetails = () => {
-        history.push(`${path}/${id}`);
-    }
-    
     const handleClickBannir = () => {
       bannirAdherent()
       updateTab(adheretsTab,adherentB)
   localStorage.setItem("adherentsTab",JSON.stringify(adheretsTab))
-  setAlert({ msg: "Adherent banni", key: Math.random() ,severity : "error"});
-     
+  setAlert({ msg: "Adherent banni", key: Math.random() ,severity : "error"});   
   }
 
+//debannir
   const handleClickDeBannir = () => {
     bannirAdherent()
     updateTab(adheretsTab,adherentB)
@@ -44,6 +38,12 @@ const history = useHistory()
   setAlert({ msg: "Adherent débanni", key: Math.random() ,severity : "success"});
    
 }
+//details adherent
+const history = useHistory()
+     let { path } = useRouteMatch()
+     const handleClickDetails = () => {
+        history.push(`${path}/${id}`);
+    }
     return (
         <div className='adherent'>
         <div>

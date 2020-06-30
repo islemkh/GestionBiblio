@@ -54,6 +54,7 @@ const adherentsTab = [
 
 }]
 
+//ajout sta3melneha ki nacceptiw demande
 export  const addAdherents = function (tab,nom, prenom,email,password,statut) {
     tab.push({id:(tab.length+1).toString(),nom: nom, prenom: prenom , email : email, password:password, statut:statut});
   console.log('adherent added successfully !!');
@@ -85,6 +86,8 @@ export  const updateTab = function (tab1,tab2) {
     }
     return null;
 }
+
+//sta3melneha f details
 export const getAdherentById = function (tab,id) { 
     for(var i = 0; i < tab.length; i++) {
       if (tab[i].id === id) {
@@ -93,19 +96,18 @@ export const getAdherentById = function (tab,id) {
     }
     return null;
   }
- // console.log(getAdherent("2"));
+
 
 
  export const fetchAdherents = async () => {
   return adherentsTab
 }
+//pour extraire l mot de passe et lmail de user besh bajmou na3mlou login
  export const fetchAdUsernamePass = (tab,username , pass)  => {
-  //return tasks
   return tab.find(ad => ad.email === username && ad.password === pass)
- //stanniiii
- //jebt lo5ra 8lot 5ater lo5ra include 5ali nfassr oss include yaani hata ken 7arf shih chyraja3 7aja
 }
 
+//sta3malneha pour mettre a jour le tableau eli fih les demandes
 export const effacerAdherentById = function (tab,id) { 
   for(var i = 0; i < tab.length; i++) {
     if (tab[i].id === id) {

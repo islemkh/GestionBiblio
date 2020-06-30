@@ -57,6 +57,8 @@ const livres = [
 
       }
     ]
+
+    //details adherent
   export const getLivresById = function (tab,id) {
         for(var i = 0; i < tab.length; i++) {
         if ( tab[i].id === id) {
@@ -66,46 +68,22 @@ const livres = [
       return null;
     }
 
-
-  export   const setTitre = function (id,titre) {
-      for (let i = 0; i < livres.length; i++) {
-        if(livres[i].id === id){
-          livres[i].titre = titre
-        }
-      }
-      console.log('titre: ', titre)
-    }
-   
+  //ajouter book 
 export  const addLivre = function (tab,titre, auteur,edition,NbExemplaires) {
   
   tab.push({id: (tab.length+1).toString() ,titre: titre, auteur: auteur ,edition: edition , NbExemplaires : NbExemplaires,etat : "non archivé" });
   console.log('livre added successfully !!');
   console.log('-------------------------------------------------');
 } 
- //addLivre('Midnight inking', true);
 
- export  const emprunter = function (tabBook,idE ,tabEmp,titre, date_emprunte, date_retour, user) {
-  for(var i = 0; i < tabBook.length; i++) {
-    if (tabBook[i].id === idE) {
 
-      tabBook[i].NbExemplaires=-1;  
-      return (tabBook);   
-    }
-  }
-  tabEmp.push({id: (tabEmp.length).toString() ,titre: titre, date_emprunte: date_emprunte ,date_retour: date_retour,user:user });
-  console.log('livre emprunter successfully !!');
-  console.log('-------------------------------------------------');
-} 
 
  function delay(ms){
   return new Promise (resolve =>setTimeout(resolve,ms) )
 }
 
-export const fetchLivresById = async(IdLivre) => {
-await delay(2000)
-return livres.find(livre => livre.id === IdLivre)
-}
 
+//reshershe
 export const searchLivres = async (tab,searchValue) => {
   await delay(2000)
   return tab.filter(livre => livre.titre.toLowerCase().includes(searchValue) ||livre.auteur.toLowerCase().includes(searchValue))
@@ -133,6 +111,7 @@ export  const archiver = function (tab,idA) {
     
 }
 
+//maj du tableau
 export  const updateTab = function (tab1,tab2) {
   for(var i = 0; i < tab1.length; i++) {
     if (tab1[i].id === tab2.id) {

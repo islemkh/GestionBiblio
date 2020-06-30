@@ -22,7 +22,7 @@ const properties = {
     console.log(`slide transition from ${oldIndex} to ${newIndex}`);
   }
 }
- 
+//sta3melneha f les images eli fl page d'accueil mta3 lprojet
 
  export const Slideshow = () => {
     return (

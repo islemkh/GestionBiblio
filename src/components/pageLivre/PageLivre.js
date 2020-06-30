@@ -7,11 +7,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Livre from '../livres/Livre'
 import ListeLivres from '../listeLivres/ListeLivres'
-
 import './PageLivres.css'
 import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import { searchLivres ,addLivre } from "../../services/livres.service"
+import {nbEmprunte} from '../../services/emprunte.service'
 import './PageLivres.css'
 import Modal from 'react-modal';
 
@@ -23,7 +23,10 @@ function PageLivre() {
    const [searchValue, setSearchValue] = useState("")
    const [livres, setLivres] = useState(listLivres)
    const [loading, setLoading] = useState(false)
-
+   const userMail = localStorage.getItem("userMail");
+   var tabEmprunte = localStorage.getItem("emprunteTab");
+   var emprunteTab = JSON.parse(tabEmprunte); 
+   const [nbBook ,setNbBook]=useState(0)
    const test = localStorage.getItem("user");
 
    const hideStyle = test ==="bibliothecaire" ? "styledisplay-block" : "styleDisplay-none";
@@ -71,20 +74,33 @@ function PageLivre() {
         didCancel = true
       }
     }, [searchValue])
+    
+    useEffect(() => {
+      const compterLivre = async () =>  {
+        const resultC  = await nbEmprunte (emprunteTab,userMail);
+       
+      setNbBook(resultC)
+      
+      }
+      compterLivre()
+    },[emprunteTab,userMail] )
 
+
+    
 return (
   <div className="pageLivres">       
     <h1 className="h1"> Listes des livres </h1>
     <div className="searchBox" >
-      <input
-        type="search"
-        placeholder="Recherche livre"
-        value={searchValue}
-        onChange={handleChange}
-      /> 
+     <div class="form-inline">
+     <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-105" type="search" placeholder="Search"
+    aria-label="Search" value={searchValue}
+    onChange={handleChange}>
+      </input> 
    <div className={hideStyle}>
          <button  onClick={openModal} className="btnAdd" > <i className="fa fa-plus" ></i></button> 
-             </div>  
+    </div>  
+    </div>
    </div>
    
 <Paper>
@@ -98,15 +114,16 @@ return (
         </TableHead>       
          <TableBody>
           {livres.map(n => {    
-            return (
-              test==="adherent"? (
+            return (        
+          test==="adherent"? (
                 n.etat==="non archivé" &&(
               <TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat}/>
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} etat={n.etat} tabBook ={listLivres} nbBook={nbBook} emprunteTab={emprunteTab}/>
                                 
               </TableRow>)):(<TableRow key={n.id}>
-                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} />
-                                              </TableRow>)
+                <Livre id={n.id} titre={n.titre} auteur={n.auteur} tabBook ={listLivres} etat={n.etat} emprunteTab={emprunteTab} />
+                                
+              </TableRow>)
             );
           })}
             
@@ -140,6 +157,7 @@ return (
         type="text"
         value={edition}
         name="edition"
+        label="edition"
         placeholder=" Ajouter edition"
         onChange={e => setEdition(e.target.value)}
       />
@@ -147,6 +165,7 @@ return (
       <input
          className="inp"
         type="number"
+        label="nbre d'exemplaire"
         placeholder="nbre d'exemplaire"
         value={nbE}
         name="nbE"
@@ -155,8 +174,8 @@ return (
             </div>       
        </MDBModalBody>
         <MDBModalFooter>
-          <button  onClick={closeModal} className="Bclose">Annuler</button>
-          <button  onClick={handleAddBook} className="addLivre"> Ajouter</button>
+          <button  onClick={closeModal} className="Bclose" >Annuler</button>
+          <button  onClick={handleAddBook} className="addLivre" data-testid="submit"> Ajouter</button>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>

@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import {Link} from 'react-router-dom'
+import {Link ,Route} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Login(props){
+export default function Login(){
 const [email, setEmail] = useState('')
 const [password,setPassword] = useState('')
 const [LoggedIn, setLoggedIn] = useState(false)
@@ -118,6 +118,7 @@ const submitForm = event => {
             id="email"
             label="Email Address"
             name="email"
+            type="email"
             autoComplete="email"
             autoFocus
             value={email}
@@ -142,6 +143,7 @@ const submitForm = event => {
             type="submit"
             fullWidth
             variant="contained"
+            data-testid="submit"
             color="primary"
             className={classes.submit}
           >
@@ -152,10 +154,10 @@ const submitForm = event => {
 
           <Grid container>
             <Grid item>
-              <Link to="/signup">
-                {"Don't have an account? Sign Up"}  
-              </Link>
-            </Grid>
+             {/*  <Link to="/signup">
+                 Don't have an account? Sign Up
+              </Link> */}
+           </Grid>
           </Grid>
         </form>
       </div>

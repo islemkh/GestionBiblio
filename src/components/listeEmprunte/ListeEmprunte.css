@@ -1,0 +1,23 @@
+.ListeEmpruntes{
+    margin-left: 100px;
+    width: 900px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+.retard{
+    background-color: #d93749;
+    border-radius: 8px;
+    border:none;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    width: auto;
+    
+    }
+    .enCours{
+      background-color: #30a54a;
+      border-radius: 8px;
+      border:none;
+      width: auto;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }

@@ -17,6 +17,7 @@ function Demande(
   const [tabDemande, setTabDemande]=useState(tabDemandes)
     const statut ="active"
 
+    //kol demande refusée ou accépté nfaskhoha m tableau mta3 les demandes
     const effacerDemande =()=>{
       const resultD = effacerAdherentById(tabDemandes,id);
       setTabDemande(resultD)
@@ -26,7 +27,7 @@ function Demande(
         localStorage.setItem("demandes", JSON.stringify(tabDemandes));
       } 
       
-    
+    // accepter la demande : nfaskhoha men tab demandes w nzidoha f tab adherents
     const handleClickAccepter = () => {
         addAdherents(
         listaAdherents,

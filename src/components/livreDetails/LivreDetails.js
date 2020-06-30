@@ -11,6 +11,7 @@ function LivreDetails() {
   
   const { livreId } = useParams()
   
+  //njibou book details 
   useEffect(() => {
     
     const fetchData = async () => {

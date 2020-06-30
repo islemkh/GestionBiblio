@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import { useState} from "react"
-import {Link} from 'react-router-dom'
+import {Link ,BrowserRouter} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -85,6 +85,7 @@ const classes = useStyles();
                 required
                 fullWidth
                 id="firstName"
+                type="text"
                 label="First Name"
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
@@ -98,6 +99,7 @@ const classes = useStyles();
                 fullWidth
                 id="lastName"
                 label="Last Name"
+                type="text"
                 name="lastName"
                 autoComplete="lname"
                 value={lastName}
@@ -111,6 +113,7 @@ const classes = useStyles();
                 fullWidth
                 id="email"
                 label="Email Address"
+                type="email"
                 name="email"
                 autoComplete="email"
                 value={email}
@@ -139,6 +142,7 @@ const classes = useStyles();
             fullWidth
             variant="contained"
             color="primary"
+            data-testid="submit"
             className={classes.submit}
             onClick={addDemande}
           >              
@@ -147,11 +151,12 @@ const classes = useStyles();
           {alert ? <AlertMassage key={alert.key} message={alert.msg} severity={alert.severity}/> : null}
 
           <Grid container justify="flex-end">
+            <div>
             <Grid item>
-              <Link to="/login" >
+              {/* <Link to="/login" >
                 Already have an account? Sign in
-              </Link>
-            </Grid>
+              </Link>  */}     
+            </Grid></div>  
           </Grid>
         </form>
       </div>

@@ -27,8 +27,9 @@ export default function AlertMassage({ message, severity }) {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
+    window.location.reload(false);
+
   };
 
   return (

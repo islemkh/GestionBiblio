@@ -7,7 +7,7 @@ import {
 import AdherentLayout from "./adherentLayout/AdherentLayout"
 import PageLivre from '../../pageLivre/PageLivre'
 import LivreDetails from '../../livreDetails/LivreDetails'
-import Home from '../../home/Home'
+import Home from '../../home/home'
 
 function AdherentRoute() {
     let { path } = useRouteMatch()
