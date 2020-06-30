@@ -1,7 +1,5 @@
-
-const adherentsTab = [
-{
-    id:"1",
+const adherentsTab = [{
+  id:"1",
     nom: "Islem",
     prenom: "Khemiri",
     email: "islem@gmail.com",
@@ -56,10 +54,10 @@ const adherentsTab = [
 
 //ajout sta3melneha ki nacceptiw demande
 export  const addAdherents = function (tab,nom, prenom,email,password,statut) {
-    tab.push({id:(tab.length+1).toString(),nom: nom, prenom: prenom , email : email, password:password, statut:statut});
-  console.log('adherent added successfully !!');
-  console.log('-------------------------------------------------');
+    return tab.push({id:(tab.length+1).toString(),nom: nom, prenom: prenom , email : email, password:password, statut:statut});
+  
 }
+
  
 export  const bannir = function (tab,idB) {
   for(var i = 0; i < tab.length; i++) {
@@ -97,13 +95,11 @@ export const getAdherentById = function (tab,id) {
     return null;
   }
 
-
-
  export const fetchAdherents = async () => {
   return adherentsTab
 }
-//pour extraire l mot de passe et lmail de user besh bajmou na3mlou login
- export const fetchAdUsernamePass = (tab,username , pass)  => {
+//pour extraire l mot de passe et lmail de user besh najmou na3mlou login
+ export const fetchAdUsernamePass = function (tab,username , pass) {
   return tab.find(ad => ad.email === username && ad.password === pass)
 }
 
@@ -117,3 +113,4 @@ export const effacerAdherentById = function (tab,id) {
   }
   return null;
 }
+

@@ -1,6 +1,5 @@
 import React , {useState,useEffect} from "react"
 import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 import {useRouteMatch, useHistory} from 'react-router-dom'
 import {updateTab, archiver} from '../../services/livres.service'
 import {emprunter, titreEmprunte, retourner,majNbE} from '../../services/emprunte.service'
@@ -14,15 +13,13 @@ function Livre({
     etat,
     tabBook,
     nbBook,
-    emprunteTab
-}
-)
+    emprunteTab})
 {
   const [etatA , setBook]=useState(tabBook)
     const test = localStorage.getItem("user");
     const userMail = localStorage.getItem("userMail");
     const history = useHistory()
-    let { path } = useRouteMatch()
+    let {path} = useRouteMatch()
     const [alert ,setAlert]=useState("")
     const [trouvé ,setTrouvé]=useState(false)
 
@@ -70,7 +67,6 @@ const handleClickEmprunter= () =>{
     setAlert({ msg: "Livre emprunter", key: Math.random() ,severity : "success"});
   }
     else{setAlert({ msg: "Vous ne pouvez pas emprunter plus de deux livres", key: Math.random() ,severity : "error"});
-    //window.location.reload(false);
   }
 
 }
@@ -90,10 +86,7 @@ const handleClickRetourner= () =>{
     updateTab(tabBook,etatA)
     localStorage.setItem("livresTab",JSON.stringify(tabBook))
     localStorage.setItem("emprunteTab",JSON.stringify(emprunteTab))
-    setAlert({ msg: "Livre retourner", key: Math.random() ,severity : "success"});
-    //window.location.reload(false);   
-
-}
+    setAlert({ msg: "Livre retourner", key: Math.random() ,severity : "success"});}
 //find book emprunter par le user courant
 useEffect(() => {
   const findLivre = async () =>  {

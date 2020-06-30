@@ -2,9 +2,8 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import SignUp from '../components/login/SignUp';
 
-
-describe("should contains email et password", ()=>{
-test(" should contains email", ()=>{
+describe("components/sign up ", ()=>{
+test(" test input ", ()=>{
     const {debug, getByLabelText, getByTestId} = render(
     <SignUp />
     )
@@ -22,6 +21,12 @@ test(" should contains email", ()=>{
     debug(TextFieldLast);
     expect(TextFieldLast).toBeTruthy();
     expect(TextFieldLast).toHaveAttribute("type","text")
+
+    const lastName = "khemiri"
+    fireEvent.change(TextFieldLast , {target: { value : lastName} } )
+    debug(TextFieldLast)
+    expect(TextFieldLast.value).toContain(lastName)
+
     const TextFieldEmail =  getByLabelText(/Email Address/i);
     debug(TextFieldEmail);
     expect(TextFieldEmail).toBeTruthy();
@@ -32,18 +37,17 @@ test(" should contains email", ()=>{
     expect(TextFieldPass).toBeTruthy();
     expect(TextFieldPass).toHaveAttribute("type","password")
 
-    expect(getByTestId("submit")).toBeTruthy()
+    
   
 })
-/* test("test button",()=>{
-    const {debug, getByTestId} = render(
-        <SignUp />
-        )
-    //event click button
-    const addDemande =jest.fn()
-    const submitBt = getByTestId("submit")
-    fireEvent.click(submitBt)
-    expect(addDemande).toHaveBeenCalled()
 
-}) */
+describe('test onclick Button', () => {
+    it('should call onClick when clicked', () => {
+        const { getByTestId } = render(
+            <SignUp  />      
+        );
+        expect(getByTestId("submit")).toBeTruthy()   
+        expect(fireEvent.click(getByTestId("submit"))).toBe(true);
+    });
+});
 })

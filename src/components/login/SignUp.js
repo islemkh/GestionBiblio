@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default function SignUp(props) {
+export default function SignUp() {
 
 const [firstName, setFirstName] = useState('')
 const [lastName,setLastName] = useState('')
@@ -58,7 +58,7 @@ const [alert ,setAlert]=useState("")
         "password" : password
     };
     
-    const addDemande = () => { 
+  const addDemande = () => { 
   existingEntries.push(entry);
   localStorage.setItem("demandes", JSON.stringify(existingEntries));
   setAlert({ msg: "Your inscription have been saved successfully, u have to wait for the admin to accept ur demand so you can login", key: Math.random() ,severity : "success"});
@@ -151,12 +151,13 @@ const classes = useStyles();
           {alert ? <AlertMassage key={alert.key} message={alert.msg} severity={alert.severity}/> : null}
 
           <Grid container justify="flex-end">
-            <div>
             <Grid item>
-              {/* <Link to="/login" >
+            <BrowserRouter basename="/" forceRefresh={true}>
+              <Link to="/login" >
                 Already have an account? Sign in
-              </Link>  */}     
-            </Grid></div>  
+              </Link> 
+              </BrowserRouter>     
+            </Grid>  
           </Grid>
         </form>
       </div>

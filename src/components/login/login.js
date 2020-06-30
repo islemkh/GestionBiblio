@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import {Link ,Route} from 'react-router-dom'
+import {Link ,BrowserRouter} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -145,18 +145,18 @@ const submitForm = event => {
             variant="contained"
             data-testid="submit"
             color="primary"
-            className={classes.submit}
-          >
+            className={classes.submit} >
             Sign In
           </Button>
           {conxErr ? <AlertMassage key={conxErr.key} message={conxErr.msg} severity={conxErr.severity}/> : null}
           {banniErr ? <AlertMassage key={banniErr.key} message={banniErr.msg} severity={banniErr.severity}/> : null}
-
           <Grid container>
             <Grid item>
-             {/*  <Link to="/signup">
+            <BrowserRouter basename="/" forceRefresh={true}>
+              <Link to="/signup">
                  Don't have an account? Sign Up
-              </Link> */}
+              </Link> 
+              </BrowserRouter>
            </Grid>
           </Grid>
         </form>

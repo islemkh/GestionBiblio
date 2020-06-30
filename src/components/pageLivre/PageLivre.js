@@ -40,6 +40,8 @@ function PageLivre() {
        addLivre(listLivres,titre,auteur,edition,nbE)
        localStorage.setItem("livresTab",JSON.stringify(listLivres))
        setIsOpen(false);
+       window.location.reload(false);
+
      }
      function closeModal(){
       setIsOpen(false);
