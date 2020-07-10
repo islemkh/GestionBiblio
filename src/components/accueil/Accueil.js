@@ -10,7 +10,6 @@ export default function Accueil() {
   const [adherents, setAdherents] = useState([])
   const [livres, setLivres] = useState([])
   const [emprunte,setEmprunte] = useState([])
-  
   //stokage des books
       useEffect(() => {
           const fetchData = async () => {

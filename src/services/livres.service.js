@@ -71,12 +71,10 @@ const livres = [
   //ajouter book 
 export  const addLivre = function (tab,titre, auteur,edition,NbExemplaires) {
   
-  tab.push({id: (tab.length+1).toString() ,titre: titre, auteur: auteur ,edition: edition , NbExemplaires : NbExemplaires,etat : "non archivé" });
+ return  tab.push({id: (tab.length+1).toString() ,titre: titre, auteur: auteur ,edition: edition , NbExemplaires : NbExemplaires,etat : "non archivé" });
   console.log('livre added successfully !!');
   console.log('-------------------------------------------------');
 } 
-
-
 
  function delay(ms){
   return new Promise (resolve =>setTimeout(resolve,ms) )
@@ -94,7 +92,6 @@ export const fetchLivre = async () => {
 }
 
 export  const archiver = function (tab,idA) {
-  
   for(var i = 0; i < tab.length; i++) {
     if (tab[i].id === idA) {
       if(tab[i].etat==="archivé"){

@@ -14,6 +14,8 @@ import { searchLivres ,addLivre } from "../../services/livres.service"
 import {nbEmprunte} from '../../services/emprunte.service'
 import './PageLivres.css'
 import Modal from 'react-modal';
+import { fetchLivre } from '../../services/livres.service'
+
 
 
 function PageLivre() {    
@@ -21,6 +23,7 @@ function PageLivre() {
     var listLivres = JSON.parse(tabLivres); 
 
    const [searchValue, setSearchValue] = useState("")
+   const [livre, setLivre] = useState([])
    const [livres, setLivres] = useState(listLivres)
    const [loading, setLoading] = useState(false)
    const userMail = localStorage.getItem("userMail");
@@ -35,14 +38,25 @@ function PageLivre() {
    const [auteur, setAuteur] = useState("")
    const [edition, setEdition]= useState("")
    const [nbE, setNbE] = useState(0)
+     //stokage des books
+     useEffect(() => {
+      const fetchData = async () => {
+        const result = await fetchLivre()
+        setLivre(result)
+        }
+      fetchData()
+      localStorage.setItem("livresTab", JSON.stringify(livre));
+    },[livre])
 // addBook
    const handleAddBook = () => {
        addLivre(listLivres,titre,auteur,edition,nbE)
        localStorage.setItem("livresTab",JSON.stringify(listLivres))
        setIsOpen(false);
        window.location.reload(false);
-
      }
+     
+
+
      function closeModal(){
       setIsOpen(false);
     }
@@ -147,6 +161,7 @@ return (
       />
       <input
         type="text"
+        label="auteur"
         value={auteur}
         name="auteur"
         className="inp"
