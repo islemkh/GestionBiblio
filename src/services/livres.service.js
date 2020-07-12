@@ -118,3 +118,9 @@ export  const updateTab = function (tab1,tab2) {
     }
     return null;
 }
+
+export const updateLivre = function(id,titre,auteur){ 
+   const newLivres = livres.map(livre => livre.id === id?({titre, auteur}): livre)
+   localStorage.setItem("livresTab",JSON.stringify(newLivres))
+   return newLivres ;
+}

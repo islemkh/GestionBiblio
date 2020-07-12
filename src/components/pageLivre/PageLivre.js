@@ -16,8 +16,6 @@ import './PageLivres.css'
 import Modal from 'react-modal';
 import { fetchLivre } from '../../services/livres.service'
 
-
-
 function PageLivre() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
@@ -56,7 +54,7 @@ function PageLivre() {
      }
      
 
-
+     
      function closeModal(){
       setIsOpen(false);
     }
@@ -196,6 +194,8 @@ return (
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>
+
+
     </div>
 )
 }
