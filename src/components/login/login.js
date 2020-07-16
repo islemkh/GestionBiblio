@@ -123,7 +123,7 @@ const submitForm = event => {
             autoFocus
             value={email}
             onChange={e => setEmail(e.target.value)}
-
+            required
           />
           <TextField
             variant="outlined"
@@ -137,6 +137,7 @@ const submitForm = event => {
             autoComplete="current-password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            required
           />
 
           <Button

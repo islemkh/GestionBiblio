@@ -150,39 +150,15 @@ const{
                 password:"123",
                 statut : "bannir" }];
                 const  tab2=[{
-                    id:"1",
+                id:"1",
                 nom: "Islem",
                 prenom: "Khemiri",
                 email: "islem@gmail.com",
                 password:"123",
                 statut : "débannir" }];
-            expect(updateTab(tab1,tab2)).toEqual(null)  
-        })
-      /*   test("test update success",()=>{
-            const  tab1=[{
-                id:"1",
-                nom: "Islem",
-                prenom: "Khemiri",
-                email: "islem@gmail.com",
-                password:"123",
-                statut : "bannir" }];
-                const  tab2=[{
-                id:"1",
-                nom: "Islem",
-                prenom: "amri",
-                email: "amri@gmail.com",
-                password:"123",
-                statut : "bannir" }];
-                /* const  expected=[{
-                    id:"1",
-                    nom: "Islem",
-                    prenom: "amri",
-                    email: "amri@gmail.com",
-                    password:"123",
-                    statut : "bannir" }]; 
             expect(updateTab(tab1,tab2)).toEqual(tab1)  
-
-        }) */
+        })
+         
     })
 
     describe("test function effacerAdherentById ",()=>{

@@ -113,14 +113,23 @@ export  const updateTab = function (tab1,tab2) {
   for(var i = 0; i < tab1.length; i++) {
     if (tab1[i].id === tab2.id) {
        tab1[i]=tab2;  
-      return (tab1);
       }
     }
-    return null;
-}
+    return (tab1);
+  }
 
-export const updateLivre = function(id,titre,auteur){ 
+export const updateLivre = (id,titre,auteur) =>{ 
    const newLivres = livres.map(livre => livre.id === id?({titre, auteur}): livre)
-   localStorage.setItem("livresTab",JSON.stringify(newLivres))
+   //localStorage.setItem("livresTab",JSON.stringify(newLivres))
    return newLivres ;
+}
+export const updateLivresById = function (tab,id,titre , auteur) {
+  for(var i = 0; i < tab.length; i++) {
+  if ( tab[i].id === id) {
+    tab[i].titre=titre;
+    tab[i].auteur=auteur;
+    return (tab[i]);
+  }
+}
+return null;
 }

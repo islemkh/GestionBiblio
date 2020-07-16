@@ -5,7 +5,7 @@ import {
   useRouteMatch
 } from "react-router-dom"
 import AdherentLayout from "./adherentLayout/AdherentLayout"
-import PageLivre from '../../pageLivre/PageLivre'
+import ListeLivres from '../../listeLivres/ListeLivres'
 import LivreDetails from '../../livreDetails/LivreDetails'
 import Home from '../../home/home'
 
@@ -19,7 +19,7 @@ function AdherentRoute() {
           < Home/>
           </Route>
            <Route exact path={`${path}/livre`}>
-            <PageLivre/>
+            <ListeLivres/>
           </Route> 
           <Route exact path={`${path}/livre/:livreId`}>
             <LivreDetails />

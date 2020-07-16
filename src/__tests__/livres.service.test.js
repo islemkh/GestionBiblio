@@ -81,7 +81,7 @@ const{
     })
 })
 describe("test function update ",()=>{
-    test("test update return null",()=>{
+    test("test update success",()=>{
         const  tab1=[{
             id:"1",
             titre: "Le Grand Meaulnes",
@@ -100,7 +100,7 @@ describe("test function update ",()=>{
             etat : "non archivé"
           }];
 
-        expect(updateTab(tab1,tab2)).toEqual(null)  
+        expect(updateTab(tab1,tab2)).toEqual(tab1)  
     })
 })
 

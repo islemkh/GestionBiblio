@@ -9,7 +9,7 @@ import ListeAdherents from '../listeAdherents/ListeAdherents'
 import AdherentDetails from '../adherentDetails/AdherentDetails'
 import Bibliothécaire from '../login/Bibliothécaire'
 import ListeDemande from "../listeDemandeAdherents/ListeDemande"
-import PageLivre from '../pageLivre/PageLivre'
+import ListeLivres from '../listeLivres/ListeLivres'
 import LivreDetails from '../livreDetails/LivreDetails'
 import ListeEmprunte from "../listeEmprunte/ListeEmprunte"
 
@@ -36,7 +36,7 @@ function BibliothecaireRoute() {
           </Route>
 
           <Route exact path={`${path}/livre`}>
-            <PageLivre/>
+            <ListeLivres/>
           </Route> 
 
           <Route exact path={`${path}/adherents/:adherentId`}>

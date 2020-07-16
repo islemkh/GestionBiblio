@@ -79,10 +79,12 @@ export  const updateTab = function (tab1,tab2) {
   for(var i = 0; i < tab1.length; i++) {
     if (tab1[i].nom === tab2.nom) {
        tab1[i]=tab2;  
-      return (tab1);
       }
+
     }
-    return null;
+    //return null;
+          return (tab1);
+
 }
 
 //sta3melneha f details

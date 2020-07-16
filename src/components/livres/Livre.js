@@ -5,6 +5,7 @@ import {updateTab, archiver, updateLivre} from '../../services/livres.service'
 import {emprunter, titreEmprunte, retourner,majNbE} from '../../services/emprunte.service'
 import './Livre.css'
 import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import TableBody from '@material-ui/core/TableBody';
 
 import AlertMassage from "../alert/AlertMassage";
 
@@ -15,26 +16,34 @@ function Livre({
     etat,
     tabBook,
     nbBook,
-    emprunteTab})
+    emprunteTab,
+    updateBook
+    })
 {
   const [etatA , setBook]=useState(tabBook)
-   
     const test = localStorage.getItem("user");
     const userMail = localStorage.getItem("userMail");
     const history = useHistory()
     let {path} = useRouteMatch()
     const [alert ,setAlert]=useState("")
-    const [trouvé ,setTrouvé]=useState(false)
-
+    const [trouve ,setTrouve]=useState(false)
     const [titleToUpdate, setTitleToUpdate] = useState(titre)
     const [AuteurToUpdate, setAuteurToUpdate] = useState(auteur)
+    const [updateCellTab, setupdateCellTab] = useState([])
 
-  const handleUpdateTask = () => {
-    updateLivre(id,titleToUpdate, AuteurToUpdate)
+  const updateLivre = () => {
+    const result = updateBook(tabBook,id,titleToUpdate, AuteurToUpdate)
+    setupdateCellTab(result)
+    console.log('result: ', result);
+   
+   }
+   const handleUpdateLivre = () => {
+    updateLivre()
+    updateTab(tabBook,updateCellTab)
+    localStorage.setItem("livresTab",JSON.stringify(tabBook))  
     setIsOpen(false);
     window.location.reload(false);
    }
-
    function closeModal(){
     setIsOpen(false);
   }
@@ -57,7 +66,6 @@ function openModal() {
  updateTab(tabBook,etatA)
  localStorage.setItem("livresTab",JSON.stringify(tabBook))
  setAlert({ msg: "Livre archivé", key: Math.random() ,severity : "error"});
- //window.location.reload(false);
 
  }
  const handleClickDesArchiver = () =>{
@@ -95,9 +103,7 @@ const retournerLivre = () =>  {
   setBook(resultA)
   const resultMAJ  = majNbE (tabBook,id);
   tabBook=resultMAJ; 
-
-
-console.log("livre emprunter")
+  console.log("livre emprunter")
 }
 
 const handleClickRetourner= () =>{
@@ -110,7 +116,7 @@ const handleClickRetourner= () =>{
 useEffect(() => {
   const findLivre = async () =>  {
     const resultC  = await titreEmprunte (emprunteTab,titre,userMail);
-   setTrouvé(resultC)
+   setTrouve(resultC)
   }
   findLivre()
 },[emprunteTab,titre,userMail] )
@@ -122,19 +128,21 @@ useEffect(() => {
               <TableCell>
                {test === "bibliothecaire"?(
                  <div> 
-                <button onClick={openModal} className="edit">Modifier</button>         
+                <button onClick={openModal} className="edit" data-testid="update1" >Modifier</button>         
                 {etat==="non archivé"? (<button className="arch" onClick ={handleClickArchiver} >Archiver</button>):
                   (<button className="desarch" onClick ={handleClickDesArchiver}>Désarchiver</button>)}
                 <button onClick =  {() =>history.push(`${path}/${id}`)} className="details">Details</button></div>
                 ):(
                   <div>
-                    {trouvé===false? (<button  className="emprunter"onClick ={handleClickEmprunter}>Emprunter</button>):
+                    {trouve===false? (<button  className="emprunter"onClick ={handleClickEmprunter}>Emprunter</button>):
                     (<button  className="desarch"onClick ={handleClickRetourner}>Retourner</button>)}
                   <button onClick ={()=>history.push(`${path}/${id}`)}  className="details">Details</button>
                   
                   </div>
-                )}
-      </TableCell>    
+                )}      
+
+      </TableCell> 
+   
       {alert ? <AlertMassage key={alert.key} message={alert.msg} severity={alert.severity}/> : null}  
       <MDBContainer>
       <MDBModal  isOpen={modalIsOpen} >
@@ -156,15 +164,37 @@ useEffect(() => {
         className="inp"
         onChange={e => setAuteurToUpdate(e.target.value)}
       />
+     {/*  <input
+        className="inp"
+        type="text"
+        name="edition"
+        label="edition"
+        placeholder=" Ajouter edition"
+        value={EditionToUpdate}
+        onChange={e => setEditionToUpdate(e.target.value)}
+        required
+      />
+      
+      <input
+         className="inp"
+        type="number"
+        label="nbre d'exemplaire"
+        placeholder="nbre d'exemplaire"
+        value={NBToUpdate}
+        name="nbE"
+        onChange={e => setNbToUpdate(e.target.value)}
+        required
+      /> */}
       </div>       
        </MDBModalBody>
         <MDBModalFooter>
           <button  onClick={closeModal} className="Bclose" >Annuler</button>
-          <button onClick={handleUpdateTask} className="addLivre" > Modifier</button>
+          <button onClick={handleUpdateLivre} className="addLivre" data-testid="updateLivres" > Modifier</button>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>
-      </>
+     
+ </>
     )
 }
 export default Livre
