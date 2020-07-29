@@ -1,0 +1,53 @@
+.adherent{
+    width: 250px;
+    border: solid #3333cc 1px;
+    border-radius: 10px/30px;
+    text-align: center;
+margin-top: 15px;
+}
+img{
+    width: 70px; 
+    height: 70px; 
+    border: solid black 1px;
+    border-radius: 50px; 
+    margin-top: 10px;
+}
+p{
+    padding: 10px;
+}
+.action{
+    margin-right: 10px;
+}
+
+button {
+    background-color: #3333cc;
+    color: white;
+    font-size: 15px;
+    margin: 4px 2px; 
+    margin-bottom: 30px;
+    width: 70px;
+    height: 40px;
+  }
+  .banni{
+    background-color: #d93749;
+    border-radius: 8px;
+    border:none;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    
+    }
+    .debanni{
+      background-color: #30a54a;
+      border-radius: 8px;
+      border:none;
+      width: auto;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
+      .details{
+        border-radius: 8px;
+        border:none;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      }
+  button:hover {opacity: 0.6}
