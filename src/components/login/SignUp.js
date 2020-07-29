@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignUp() {
-
+  var expressionReguliere = /^([a-z]|[0-9])+@([a-z]|[0-9])+\.[a-z]{2,6}$/;
 const [firstName, setFirstName] = useState('')
 const [lastName,setLastName] = useState('')
 const [email, setEmail] = useState('')
@@ -59,10 +59,33 @@ const [alert ,setAlert]=useState("")
     };
     
   const addDemande = () => { 
-  existingEntries.push(entry);
-  localStorage.setItem("demandes", JSON.stringify(existingEntries));
-  setAlert({ msg: "Your inscription have been saved successfully, u have to wait for the admin to accept ur demand so you can login", key: Math.random() ,severity : "success"});
-}
+    
+      //Handler for the Submit onPress
+      if (firstName != '') {
+        //Check for the Name TextInput
+        if (lastName != '') {
+          if (email != ''){
+            if (password != '') {
+              existingEntries.push(entry);
+              localStorage.setItem("demandes", JSON.stringify(existingEntries));
+              setAlert({ msg: "Your inscription have been saved successfully, u have to wait for the admin to accept ur demand so you can login", key: Math.random() ,severity : "success"});       
+             } 
+              
+              else {
+                setAlert({ msg: "You must Complete password", key: Math.random() ,severity : "error"}); 
+                }
+            }
+            else {
+              setAlert({ msg: "You must Complete mail", key: Math.random() ,severity : "error"}); 
+              }}
+              else {
+                setAlert({ msg: "You must Complete last name", key: Math.random() ,severity : "error"}); 
+                }}          
+       else {
+        setAlert({ msg: "You must Complete first name", key: Math.random() ,severity : "error"}); 
+        }
+    };
+ 
 
 const classes = useStyles();
   return (
@@ -146,6 +169,7 @@ const classes = useStyles();
             data-testid="submit"
             className={classes.submit}
             onClick={addDemande}
+
           >              
           Sign Up
           </Button>

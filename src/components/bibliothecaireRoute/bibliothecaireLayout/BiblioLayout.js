@@ -93,14 +93,16 @@ export default function BiblioLayout({children}){
     };
    
     
-// const token = localStorage.getItem("token")
-// let loggedIn = true
-// if(token == null){
-//     loggedIn = false
-// }
-// if (loggedIn === false ){
-//     return <Redirect to="/"></Redirect> 
-// }
+/*  const user = localStorage.getItem("user")
+ let loggedIn = true
+ if(user == 'bibliothecaire'){
+    loggedIn = false
+ }
+  if (loggedIn === false ){
+     return <Redirect to="/">
+
+     </Redirect> 
+ } */
 
 return (
 <div className={classes.root}>
