@@ -47,7 +47,7 @@ function Emprunte(
             
           <div className="title">
               
-              <div className="label"> titre : <span className="value">{e.titre}</span></div>
+              <div className="label"  > titre : <span className="value">{e.titre}</span></div>
               <div className="label"> date d'emprunte : <span className="value">{e.date_emprunte}</span></div>
               <div className="label"> date de retour : <span className="value">{e.date_retour}</span></div>
               <hr></hr>

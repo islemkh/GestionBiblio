@@ -44,7 +44,7 @@ function AdherentDetails() {
           <div className="label"> prenom : <span className="value">{adherent.prenom}</span></div>
           <div className="label"> email : <span className="value">{adherent.email}</span></div>
          <div className="label"> statut : <span className="value">{adherent.statut}</span></div>
-         <Emprunte user={adherent.email}affisher={affisher} />
+         <Emprunte    user={adherent.email}affisher={affisher} />
          </div>
         </>
       )}

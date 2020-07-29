@@ -92,14 +92,14 @@ export default function AdherentLayout({children}){
     };
    
     
-// const token = localStorage.getItem("token")
-// let loggedIn = true
-// if(token == null){
-//     loggedIn = false
-// }
-// if (loggedIn === false ){
-//     return <Redirect to="/"></Redirect> 
-// }
+ /* const user = localStorage.getItem("user")
+ let loggedIn = false
+ if(user == 'adherent'){
+     loggedIn = true
+}
+ if (loggedIn === false ){
+    return <Redirect to="/"></Redirect> 
+ } */
 
 return (
 <div className={classes.root}>

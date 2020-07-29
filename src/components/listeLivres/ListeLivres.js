@@ -15,7 +15,7 @@ import Modal from 'react-modal';
 import { fetchLivre } from '../../services/livres.service'
 import {updateLivre} from '../../services/livres.service'
 
-function PageLivre() {    
+function listeLivres() {    
     var tabLivres = localStorage.getItem("livresTab");
     var listLivres = JSON.parse(tabLivres); 
 
@@ -194,4 +194,4 @@ return (
 )
 }
 
-export default PageLivre
+export default listeLivres
