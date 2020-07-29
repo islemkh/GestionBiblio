@@ -1,7 +1,7 @@
 import React , {useState,useEffect} from "react"
 import TableCell from '@material-ui/core/TableCell';
 import {useRouteMatch, useHistory} from 'react-router-dom'
-import {updateTab, archiver, updateLivre} from '../../services/livres.service'
+import {updateTab, archiver} from '../../services/livres.service'
 import {emprunter, titreEmprunte, retourner,majNbE} from '../../services/emprunte.service'
 import './Livre.css'
 import { MDBContainer,  MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
@@ -153,43 +153,23 @@ useEffect(() => {
         type="text"
         name="title"
         value={titleToUpdate}
+        aria-label="title"
         className="inp"
         onChange={e => setTitleToUpdate(e.target.value)}
         />
       <input
         type="text"
-        label="auteur"
+        aria-label="auteur"
         value={AuteurToUpdate}
         name="auteur"
         className="inp"
         onChange={e => setAuteurToUpdate(e.target.value)}
       />
-     {/*  <input
-        className="inp"
-        type="text"
-        name="edition"
-        label="edition"
-        placeholder=" Ajouter edition"
-        value={EditionToUpdate}
-        onChange={e => setEditionToUpdate(e.target.value)}
-        required
-      />
-      
-      <input
-         className="inp"
-        type="number"
-        label="nbre d'exemplaire"
-        placeholder="nbre d'exemplaire"
-        value={NBToUpdate}
-        name="nbE"
-        onChange={e => setNbToUpdate(e.target.value)}
-        required
-      /> */}
-      </div>       
+       </div>       
        </MDBModalBody>
         <MDBModalFooter>
           <button  onClick={closeModal} className="Bclose" >Annuler</button>
-          <button onClick={handleUpdateLivre} className="addLivre" data-testid="updateLivres" > Modifier</button>
+          <button onClick={handleUpdateLivre} className="addLivre" data-testid="updateLivres" > Modifier Livre</button>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>

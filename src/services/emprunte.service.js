@@ -37,7 +37,7 @@ const empruntes = [
       }
     ]
 
-    export const fetchEmpruntes = async () => {
+    export const fetchEmpruntes=() => {
         return empruntes
       }
 
@@ -71,8 +71,7 @@ const empruntes = [
           return (tabEmp)
           } 
 // MAJ le nbre d'exemplaire apres le retour du book
-      export  const majNbE = function (tabBook,idE) {
-       
+      export  const majNbE = function (tabBook,idE) {     
         for(var j = 0; j < tabBook.length; j++) {
           if (tabBook[j].id === idE) {
       
@@ -98,24 +97,22 @@ const empruntes = [
 //verifier si le livre avec le titre saisis est emprunté par l'utilisateur saisis 
 //sta3melneha besh ken l9ah y7ot retourner f blaset emprunter
       export  const titreEmprunte = function (tabEmp,titre, user) {
-        var trouvé= false
+        var trouve= false
         for(var i = 0; i < tabEmp.length; i++) {
             if (tabEmp[i].emprunteur === user && tabEmp[i].titre === titre && tabEmp[i].date_retour==="Pas encore" ) {
-             trouvé = true;  
+             trouve = true;  
             } 
           }
-          return (trouvé);  
+          return (trouve);  
       } 
 
 //extraire tous les livres empruntés par le user saisis
 //sta3melneha f details adherent
-      export  const userEmprunte = function (tabEmp, user) {
-        
+      export  const userEmprunte = function (tabEmp, user) {     
         var tab= []
         for(var i = 0; i < tabEmp.length; i++) {
             if (tabEmp[i].emprunteur === user ) {
-              tab.push (tabEmp[i])
-              
+              tab.push (tabEmp[i])           
             } 
           }
           return (tab);  

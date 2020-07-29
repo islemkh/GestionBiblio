@@ -35,15 +35,7 @@ function PageLivre() {
    const [auteur, setAuteur] = useState("")
    const [edition, setEdition]= useState("")
    const [nbE, setNbE] = useState(0)
-     //stokage des books
-     useEffect(() => {
-      const fetchData = async () => {
-        const result = await fetchLivre()
-        setLivre(result)
-        }
-      fetchData()
-      localStorage.setItem("livresTab", JSON.stringify(livre));
-    },[livre])
+    
 // addBook
    const handleAddBook = () => {
        addLivre(listLivres,titre,auteur,edition,nbE)

@@ -40,7 +40,7 @@ const adherentsTab = [{
     prenom: "ben mheni",
     email: "ines@gmail.com",
     password:"123",
-    statut : "banni"
+    statut : "active"
 
 },{
   id:"6",
